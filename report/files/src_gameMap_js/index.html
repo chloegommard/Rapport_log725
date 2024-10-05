@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plato - src\gameMap.js</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="../../assets/css/vendor/morris.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet" />
+    <link href="../../assets/css/plato.css" rel="stylesheet" />
+    <link href="../../assets/css/plato-file.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="http://github.com/es-analysis/plato"
+          >Plato on Github</a
+        >
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="../../index.html">Report Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>src\gameMap.js</h1>
+      </div>
+    </div>
+
+    <div class="container aggregate-stats">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Maintainability
+            <a
+              href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability."
+                data-original-title="Maintainability Index"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">58.43</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Lines of code
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h2>
+          <p class="stat">395</p>
+        </div>
+      </div>
+      <div class="row historical">
+        <div class="col-md-6">
+          <p id="chart_historical_maint" class="chart"></p>
+        </div>
+        <div class="col-md-6">
+          <p id="chart_historical_sloc" class="chart"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Difficulty
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="The difficulty measure is related to the difficulty of the program to write or understand."
+                data-original-title="Difficulty"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">129.86</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Estimated Errors
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation."
+                data-original-title="Delivered Bugs"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">4.41</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container charts">
+      <div class="row">
+        <h2 class="header">Function weight</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By Complexity
+            <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="This metric counts the number of distinct paths through a block of code. Lower values are better."
+                data-original-title="Cyclomatic Complexity"
+                data-container="body"
+              ></i
+            ></a>
+          </h3>
+          <div id="fn-by-complexity" class="stat"></div>
+        </div>
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By SLOC
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h3>
+          <div id="fn-by-sloc" class="stat"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <textarea id="file-source" class="col-md-12">
+/* micropolisJS. Adapted by Graeme McCutcheon from Micropolis.
+ *
+ * This code is released under the GNU GPL v3, with some additional terms.
+ * Please see the files LICENSE and COPYING for details. Alternatively,
+ * consult http://micropolisjs.graememcc.co.uk/LICENSE and
+ * http://micropolisjs.graememcc.co.uk/COPYING
+ *
+ */
+
+import { Bounds } from &quot;./bounds&quot;;
+import * as Direction from &#039;./direction&#039;;
+import { MiscUtils } from &#039;./miscUtils&#039;;
+import { Position } from &#039;./position&#039;;
+import { Tile } from &#039;./tile&#039;;
+import { BNCNBIT, ZONEBIT } from &quot;./tileFlags&quot;;
+import { TILE_INVALID } from &quot;./tileValues&quot;;
+
+function GameMap(width, height, defaultValue) {
+  if (!(this instanceof GameMap))
+    return new GameMap(width, height, defaultValue);
+
+  if (arguments.length &gt; 1 &amp;&amp; typeof(width) === &#039;number&#039; &amp;&amp;
+      (width &lt; 1 || height &lt; 1))
+    throw new Error(&#039;GameMap constructor called with invalid width or height &#039; + width + &#039; &#039; + height);
+
+  // Argument shuffling
+  if (arguments.length === 0) {
+    width = 120;
+    height = 100;
+    defaultValue = new Tile().getValue();
+  } else if (arguments.length === 1) {
+    if (typeof(width) === &#039;number&#039;) {
+      // Default value
+      defaultValue = width;
+    } else {
+      // Tile
+      defaultValue = width.getValue();
+    }
+    width = 120;
+    height = 100;
+  } else if (arguments.length === 2) {
+    defaultValue = new Tile().getValue();
+  } else if (arguments.length === 3) {
+    if (typeof(defaultValue) === &#039;object&#039;)
+      defaultValue = defaultValue.getValue();
+  }
+
+
+  this.width = width;
+  this.height = height;
+  this.bounds = Bounds.fromOrigin(width, height);
+
+  var data = [];
+  for (var i = 0, l = width * height; i &lt; l; i++)
+    data[i] = new Tile(defaultValue);
+  this._data = data;
+
+  // Generally set externally
+  this.cityCentreX = Math.floor(this.width / 2);
+  this.cityCentreY = Math.floor(this.height / 2);
+  this.pollutionMaxX = this.cityCentreX;
+  this.pollutionMaxY = this.cityCentreY;
+}
+
+
+var saveProps = [&#039;cityCentreX&#039;, &#039;cityCentreY&#039;, &#039;pollutionMaxX&#039;, &#039;pollutionMaxY&#039;, &#039;width&#039;, &#039;height&#039;];
+
+GameMap.prototype.save = function(saveData) {
+  for (var i = 0, l = saveProps.length; i &lt; l; i++)
+    saveData[saveProps[i]] = this[saveProps[i]];
+
+  saveData.map = this._data.map(function(t) {
+    return {value: t.getRawValue()};
+  });
+};
+
+
+GameMap.prototype.load = function(saveData) {
+  for (var i = 0, l = saveProps.length; i &lt; l; i++)
+    this[saveProps[i]] = saveData[saveProps[i]];
+
+  var map = saveData.map;
+  for (i = 0, l = map.length; i &lt; l; i++)
+    this.setTileValue(i % this.width, Math.floor(i / this.width), map[i].value);
+};
+
+
+GameMap.prototype._calculateIndex = function(x, y) {
+  return x + y * this.width;
+};
+
+
+GameMap.prototype.isPositionInBounds = function(pos) {
+  return this.bounds.contains(pos);
+}
+
+
+GameMap.prototype.testBounds = function(x, y) {
+  return this.isPositionInBounds(new Position(x, y));
+};
+
+
+GameMap.prototype.getTile = function(x, y, newTile) {
+  // Argument-shuffling
+  if (typeof(x) === &#039;object&#039;) {
+    y = x.y;
+    x = x.x;
+  }
+
+  var width = this.width;
+  var height = this.height;
+
+  if (x &lt; 0 || y &lt; 0 || x &gt;= width || y &gt;= height) {
+    console.warn(&#039;getTile called with bad bounds&#039;, x, y);
+    return new Tile(TILE_INVALID);
+  }
+
+  var tileIndex = x + y * width;
+  var tile = this._data[tileIndex];
+
+  // Return the original tile if we&#039;re not given a tile to fill
+  if (!newTile)
+    return tile;
+
+  newTile.setFrom(tile);
+  return tile;
+};
+
+
+GameMap.prototype.getTileValue = function(x, y) {
+  if (arguments.length &lt; 1)
+    throw new Error(&#039;GameMap getTileValue called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (typeof(x) === &#039;object&#039;) {
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap getTileValue called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  return this._data[tileIndex].getValue();
+};
+
+
+GameMap.prototype.getTileFlags = function(x, y) {
+  if (arguments.length &lt; 1)
+    throw new Error(&#039;GameMap getTileFlags called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (typeof(x) === &#039;object&#039;) {
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap getTileFlags called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  return this._data[tileIndex].getFlags();
+};
+
+
+GameMap.prototype.getTiles = function(x, y, w, h) {
+  if (arguments.length &lt; 3)
+    throw new Error(&#039;GameMap getTiles called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 3) {
+    h = w;
+    w = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap getTiles called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var res = [];
+  for (var a = y, ylim = y + h; a &lt; ylim; a++) {
+    res[a - y] = [];
+    for (var b = x, xlim = x + w; b &lt; xlim; b++) {
+      var tileIndex = this._calculateIndex(b, a);
+      res[a-y].push(this._data[tileIndex]);
+    }
+  }
+  return res;
+};
+
+
+GameMap.prototype.getTileValuesForPainting = function(x, y, w, h, result) {
+  result = result || [];
+
+  if (arguments.length &lt; 3)
+    throw new Error(&#039;GameMap getTileValuesForPainting called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 3) {
+    h = w;
+    w = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  var width = this.width;
+  var height = this.height;
+
+  // Result is stored in row-major order
+  for (var a = y, ylim = y + h; a &lt; ylim; a++) {
+    for (var b = x, xlim = x + w; b &lt; xlim; b++) {
+      if (a &lt; 0 || b &lt; 0 || a &gt;= height || b &gt;= width) {
+        result[(a - y) * w + (b - x)] = TILE_INVALID;
+        continue;
+      }
+
+      var tileIndex =  b + a * width;
+      result[(a - y) * w + (b - x)] = this._data[tileIndex].getRawValue();
+    }
+  }
+
+  return result;
+};
+
+
+GameMap.prototype.getTileFromMapOrDefault = function(pos, dir, defaultTile) {
+  switch (dir) {
+    case Direction.NORTH:
+      if (pos.y &gt; 0)
+        return this.getTileValue(pos.x, pos.y - 1);
+      return defaultTile;
+
+    case Direction.EAST:
+      if (pos.x &lt; this.width - 1)
+        return this.getTileValue(pos.x + 1, pos.y);
+
+      return defaultTile;
+
+    case Direction.SOUTH:
+      if (pos.y &lt; this.height - 1)
+        return this.getTileValue(pos.x, pos.y + 1);
+
+      return defaultTile;
+
+    case Direction.WEST:
+      if (pos.x &gt; 0)
+        return this.getTileValue(pos.x - 1, pos.y);
+
+      return defaultTile;
+
+    default:
+        return defaultTile;
+  }
+};
+
+
+GameMap.prototype.setTile = function(x, y, value, flags) {
+  if (arguments.length &lt; 3)
+    throw new Error(&#039;GameMap setTile called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 3) {
+    flags = value;
+    value = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap setTile called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  this._data[tileIndex].set(value, flags);
+};
+
+
+GameMap.prototype.setTo = function(x, y, tile) {
+  if (arguments.length &lt; 2)
+    throw new Error(&#039;GameMap setTo called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (tile === undefined) {
+    tile = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap setTo called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  this._data[tileIndex] = tile;
+};
+
+
+GameMap.prototype.setTileValue = function(x, y, value) {
+  if (arguments.length &lt; 2)
+    throw new Error(&#039;GameMap setTileValue called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 2) {
+    value = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap setTileValue called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  this._data[tileIndex].setValue(value);
+};
+
+
+GameMap.prototype.setTileFlags = function(x, y, flags) {
+  if (arguments.length &lt; 2)
+    throw new Error(&#039;GameMap setTileFlags called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 2) {
+    flags = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap setTileFlags called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  this._data[tileIndex].setFlags(flags);
+};
+
+
+GameMap.prototype.addTileFlags = function(x, y, flags) {
+  if (arguments.length &lt; 2)
+    throw new Error(&#039;GameMap addTileFlags called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 2) {
+    flags = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap addTileFlags called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  this._data[tileIndex].addFlags(flags);
+};
+
+
+GameMap.prototype.removeTileFlags = function(x, y, flags) {
+  if (arguments.length &lt; 2)
+    throw new Error(&#039;GameMap removeTileFlags called with too few arguments&#039; + [].toString.apply(arguments));
+
+  // Argument-shuffling
+  if (arguments.length === 2) {
+    flags = y;
+    y = x.y;
+    x = x.x;
+  }
+
+  if (!this.testBounds(x, y))
+    throw new Error(&#039;GameMap removeTileFlags called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tileIndex = this._calculateIndex(x, y);
+  this._data[tileIndex].removeFlags(flags);
+};
+
+
+GameMap.prototype.putZone = function(centreX, centreY, centreTile, size) {
+  var x, y;
+
+  if (!this.testBounds(centreX, centreY) || !this.testBounds(centreX - 1 + size - 1, centreY - 1 + size - 1))
+    throw new Error(&#039;GameMap putZone called with invalid bounds &#039; + x + &#039;, &#039; + y);
+
+  var tile = centreTile - 1 - size;
+  var startX = centreX - 1;
+  var startY = centreY - 1;
+
+  for (y = startY; y &lt; startY + size; y++) {
+    for (x = startX; x &lt; startX + size; x++) {
+      if (x === centreX &amp;&amp; y === centreY)
+        this.setTo(x, y, new Tile(tile, BNCNBIT | ZONEBIT));
+      else
+        this.setTo(x, y, new Tile(tile, BNCNBIT));
+      tile += 1;
+    }
+  }
+};
+
+
+export { GameMap };</textarea
+        >
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>.</p>
+      </div>
+    </footer>
+
+    <script type="text/html" id="complexity-popover-template">
+      <div class="complexity-notice">
+        Complexity : {{ cyclomatic }} <br />
+        Length : {{ halstead.length }} <br />
+        Difficulty : {{ halstead.difficulty.toFixed(2) }} <br />
+        Est # bugs : {{ halstead.bugs.toFixed(2) }}<br />
+      </div>
+    </script>
+
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/core-bundle.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/codemirror.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/codemirror.markpopovertext.js"
+    ></script>
+    <script type="text/javascript" src="report.js"></script>
+    <script type="text/javascript" src="report.history.js"></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/plato-file.js"
+    ></script>
+  </body>
+</html>

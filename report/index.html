@@ -1,0 +1,1711 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plato - JavaScript Introspection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script>
+      var __options = {
+        flags: {
+          complexity: {
+            commonjs: true,
+            logicalor: true,
+            switchcase: true,
+            forin: false,
+            trycatch: false,
+            newmi: true,
+          },
+          jshint: {},
+        },
+      };
+    </script>
+
+    <link href="assets/css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/vendor/morris.css" rel="stylesheet" />
+    <link href="assets/css/plato.css" rel="stylesheet" />
+    <link href="assets/css/plato-overview.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="http://github.com/es-analysis/plato"
+          >Plato on Github</a
+        >
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="index.html">Report Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>JavaScript Source Analysis</h1>
+      </div>
+    </div>
+
+    <div class="container aggregate-stats">
+      <div class="row">
+        <h1 class="col-md-12">Summary</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Total/Average Lines
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code"
+              data-original-title="SLOC"
+              data-container="body"
+            ></i>
+          </h2>
+          <p class="stat">11990 / 155</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Average Maintainability
+            <a
+              href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability."
+                data-original-title="Maintainability Index"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">64.15</p>
+        </div>
+      </div>
+    </div>
+    <div class="container historical">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="chart_historical_sloc" class="chart js-chart"></div>
+        </div>
+        <div class="col-md-6">
+          <div id="chart_historical_maint" class="chart js-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container overview">
+      <div class="row">
+        <h2 class="col-md-12">
+          Maintainability
+          <a
+            href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"
+            ><i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability."
+              data-original-title="Maintainability Index"
+              data-container="body"
+            ></i
+          ></a>
+        </h2>
+        <div class="col-md-12">
+          <div id="chart_maintainability" class="chart js-chart"></div>
+        </div>
+      </div>
+      <div class="row">
+        <h2 class="col-md-12">
+          Lines of code
+          <i
+            class="icon icon-info-sign"
+            rel="popover"
+            data-placement="top"
+            data-trigger="hover"
+            data-content="Source Lines of Code"
+            data-original-title="SLOC"
+            data-container="body"
+          ></i>
+        </h2>
+        <div class="col-md-12">
+          <div id="chart_sloc" class="chart js-chart"></div>
+        </div>
+      </div>
+      <div class="row">
+        <h2 class="col-md-12">
+          Estimated errors in implementation
+          <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+            ><i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation."
+              data-original-title="Delivered Bugs"
+              data-container="body"
+            ></i
+          ></a>
+        </h2>
+        <div class="col-md-12">
+          <div id="chart_bugs" class="chart js-chart"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <h2 class="col-md-12">Lint errors</h2>
+        <div class="col-md-12">
+          <div id="chart_lint" class="chart js-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h1 class="col-md-12">Files</h1>
+      </div>
+
+      <div class="row">
+        <div class="span12 group-header">
+          <div class="btn-group">
+            <button
+              type="button"
+              id="button-complexity"
+              class="btn btn-default complexity"
+            >
+              complexity
+            </button>
+            <button type="button" id="button-sloc" class="btn btn-default sloc">
+              sloc
+            </button>
+            <button type="button" id="button-bugs" class="btn btn-default bugs">
+              est errors
+            </button>
+
+            <button type="button" id="button-lint" class="btn btn-default lint">
+              lint errors
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">&nbsp;</div>
+
+      <div class="row">
+        <ul class="file-list list-unstyled">
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_airplaneSprite_js/index.html"
+                  >src\airplaneSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="110"
+                data-bugs="1.07"
+                data-complexity="15"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_animationManager_js/index.html"
+                  >src\animationManager.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="226"
+                data-bugs="3.26"
+                data-complexity="32"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_baseSprite_js/index.html"
+                  >src\baseSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="114"
+                data-bugs="0.73"
+                data-complexity="4"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_baseTool_js/index.html"
+                  >src\baseTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="124"
+                data-bugs="0.83"
+                data-complexity="9"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_blockMapUtils_js/index.html"
+                  >src\blockMapUtils.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="486"
+                data-bugs="3.93"
+                data-complexity="59"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_boatSprite_js/index.html"
+                  >src\boatSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="185"
+                data-bugs="1.74"
+                data-complexity="31"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_budget_js/index.html"
+                  >src\budget.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="284"
+                data-bugs="2.87"
+                data-complexity="22"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_budgetWindow_js/index.html"
+                  >src\budgetWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="148"
+                data-bugs="1.68"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_buildingTool_js/index.html"
+                  >src\buildingTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="115"
+                data-bugs="0.82"
+                data-complexity="17"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_bulldozerTool_js/index.html"
+                  >src\bulldozerTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="143"
+                data-bugs="1.32"
+                data-complexity="33"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_census_js/index.html"
+                  >src\census.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="145"
+                data-bugs="1.64"
+                data-complexity="10"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_commercial_js/index.html"
+                  >src\commercial.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="148"
+                data-bugs="1.00"
+                data-complexity="15"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_config_js/index.html"
+                  >src\config.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="21"
+                data-bugs="0.02"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_congratsWindow_js/index.html"
+                  >src\congratsWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="42"
+                data-bugs="0.18"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_connectingTool_js/index.html"
+                  >src\connectingTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="21"
+                data-bugs="0.05"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_connector_js/index.html"
+                  >src\connector.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="228"
+                data-bugs="2.78"
+                data-complexity="87"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_copterSprite_js/index.html"
+                  >src\copterSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="113"
+                data-bugs="1.17"
+                data-complexity="15"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_debugWindow_js/index.html"
+                  >src\debugWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="70"
+                data-bugs="0.38"
+                data-complexity="3"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_disasterManager_js/index.html"
+                  >src\disasterManager.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="275"
+                data-bugs="2.96"
+                data-complexity="59"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_disasterWindow_js/index.html"
+                  >src\disasterWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="74"
+                data-bugs="0.56"
+                data-complexity="2"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_emergencyServices_js/index.html"
+                  >src\emergencyServices.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="47"
+                data-bugs="0.33"
+                data-complexity="3"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_evaluation_js/index.html"
+                  >src\evaluation.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="345"
+                data-bugs="3.96"
+                data-complexity="45"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_evaluationWindow_js/index.html"
+                  >src\evaluationWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="65"
+                data-bugs="0.54"
+                data-complexity="3"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_eventEmitter_js/index.html"
+                  >src\eventEmitter.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="77"
+                data-bugs="0.47"
+                data-complexity="11"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_explosionSprite_js/index.html"
+                  >src\explosionSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="84"
+                data-bugs="0.72"
+                data-complexity="8"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_game_js/index.html"
+                  >src\game.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="707"
+                data-bugs="8.95"
+                data-complexity="82"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_gameCanvas_js/index.html"
+                  >src\gameCanvas.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="658"
+                data-bugs="8.18"
+                data-complexity="118"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_gameMap_js/index.html"
+                  >src\gameMap.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="1"
+                data-sloc="395"
+                data-bugs="4.41"
+                data-complexity="74"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_gameTools_js/index.html"
+                  >src\gameTools.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="48"
+                data-bugs="0.50"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_industrial_js/index.html"
+                  >src\industrial.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="163"
+                data-bugs="1.21"
+                data-complexity="16"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_infoBar_js/index.html"
+                  >src\infoBar.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="56"
+                data-bugs="0.48"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_inputStatus_js/index.html"
+                  >src\inputStatus.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="308"
+                data-bugs="3.31"
+                data-complexity="42"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_mapGenerator_js/index.html"
+                  >src\mapGenerator.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="3"
+                data-sloc="507"
+                data-bugs="5.11"
+                data-complexity="97"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_mapScanner_js/index.html"
+                  >src\mapScanner.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="71"
+                data-bugs="0.54"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_micropolis_js/index.html"
+                  >src\micropolis.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="91"
+                data-bugs="0.53"
+                data-complexity="2"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_miscTiles_js/index.html"
+                  >src\miscTiles.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="86"
+                data-bugs="0.67"
+                data-complexity="13"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_miscUtils_js/index.html"
+                  >src\miscUtils.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="44"
+                data-bugs="0.16"
+                data-complexity="4"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_modalWindow_js/index.html"
+                  >src\modalWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="48"
+                data-bugs="0.31"
+                data-complexity="7"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_monsterSprite_js/index.html"
+                  >src\monsterSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="178"
+                data-bugs="1.89"
+                data-complexity="32"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_monsterTV_js/index.html"
+                  >src\monsterTV.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="124"
+                data-bugs="1.01"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_mouseBox_js/index.html"
+                  >src\mouseBox.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="36"
+                data-bugs="0.24"
+                data-complexity="6"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_nagWindow_js/index.html"
+                  >src\nagWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="40"
+                data-bugs="0.15"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_notification_js/index.html"
+                  >src\notification.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="128"
+                data-bugs="1.11"
+                data-complexity="14"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_parkTool_js/index.html"
+                  >src\parkTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="45"
+                data-bugs="0.30"
+                data-complexity="3"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_powerManager_js/index.html"
+                  >src\powerManager.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="1"
+                data-sloc="156"
+                data-bugs="1.41"
+                data-complexity="18"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_queryTool_js/index.html"
+                  >src\queryTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="148"
+                data-bugs="2.17"
+                data-complexity="28"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_queryWindow_js/index.html"
+                  >src\queryWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="48"
+                data-bugs="0.25"
+                data-complexity="4"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_railTool_js/index.html"
+                  >src\railTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="110"
+                data-bugs="1.07"
+                data-complexity="29"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_rci_js/index.html"
+                  >src\rci.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="135"
+                data-bugs="1.52"
+                data-complexity="13"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_repairManager_js/index.html"
+                  >src\repairManager.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="69"
+                data-bugs="0.63"
+                data-complexity="13"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_residential_js/index.html"
+                  >src\residential.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="319"
+                data-bugs="3.17"
+                data-complexity="57"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_road_js/index.html"
+                  >src\road.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="187"
+                data-bugs="1.93"
+                data-complexity="34"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_roadTool_js/index.html"
+                  >src\roadTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="112"
+                data-bugs="1.06"
+                data-complexity="29"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_saveWindow_js/index.html"
+                  >src\saveWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="40"
+                data-bugs="0.15"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_screenshotLinkWindow_js/index.html"
+                  >src\screenshotLinkWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="48"
+                data-bugs="0.21"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_screenshotWindow_js/index.html"
+                  >src\screenshotWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="74"
+                data-bugs="0.39"
+                data-complexity="3"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_settingsWindow_js/index.html"
+                  >src\settingsWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="124"
+                data-bugs="1.00"
+                data-complexity="10"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_simulation_js/index.html"
+                  >src\simulation.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="643"
+                data-bugs="8.99"
+                data-complexity="117"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_splashCanvas_js/index.html"
+                  >src\splashCanvas.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="100"
+                data-bugs="0.68"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_splashScreen_js/index.html"
+                  >src\splashScreen.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="146"
+                data-bugs="0.95"
+                data-complexity="5"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_spriteManager_js/index.html"
+                  >src\spriteManager.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="285"
+                data-bugs="3.52"
+                data-complexity="40"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_spriteUtils_js/index.html"
+                  >src\spriteUtils.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="180"
+                data-bugs="1.31"
+                data-complexity="34"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_stadia_js/index.html"
+                  >src\stadia.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="49"
+                data-bugs="0.35"
+                data-complexity="5"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_storage_js/index.html"
+                  >src\storage.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="72"
+                data-bugs="0.43"
+                data-complexity="5"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_text_js/index.html"
+                  >src\text.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="167"
+                data-bugs="2.20"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_tileHistory_js/index.html"
+                  >src\tileHistory.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="37"
+                data-bugs="0.13"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_tileSet_js/index.html"
+                  >src\tileSet.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="94"
+                data-bugs="0.59"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_tileUtils_js/index.html"
+                  >src\tileUtils.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="127"
+                data-bugs="1.00"
+                data-complexity="23"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_tornadoSprite_js/index.html"
+                  >src\tornadoSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="98"
+                data-bugs="0.83"
+                data-complexity="16"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_touchWarnWindow_js/index.html"
+                  >src\touchWarnWindow.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="40"
+                data-bugs="0.15"
+                data-complexity="1"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_traffic_js/index.html"
+                  >src\traffic.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="186"
+                data-bugs="1.71"
+                data-complexity="30"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_trainSprite_js/index.html"
+                  >src\trainSprite.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="132"
+                data-bugs="1.09"
+                data-complexity="17"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_transport_js/index.html"
+                  >src\transport.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="85"
+                data-bugs="0.78"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_valves_js/index.html"
+                  >src\valves.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="142"
+                data-bugs="1.43"
+                data-complexity="12"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_wireTool_js/index.html"
+                  >src\wireTool.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="118"
+                data-bugs="1.15"
+                data-complexity="29"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a
+                  class="file-link"
+                  href="./files/src_worldEffects_js/index.html"
+                  >src\worldEffects.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="74"
+                data-bugs="0.61"
+                data-complexity="9"
+              ></span>
+            </div>
+          </li>
+
+          <li class="col-md-12">
+            <div class="row">
+              <span class="fade-left fadeout visible-large"></span>
+              <span class="col-md-4 file"
+                ><a class="file-link" href="./files/src_zoneUtils_js/index.html"
+                  >src\zoneUtils.js</a
+                ></span
+              >
+              <span
+                class="col-md-8 file-chart js-file-chart"
+                data-lint="0"
+                data-sloc="222"
+                data-bugs="2.23"
+                data-complexity="63"
+              ></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>.</p>
+      </div>
+    </footer>
+
+    <script
+      type="text/javascript"
+      src="assets/scripts/bundles/core-bundle.js"
+    ></script>
+    <script type="text/javascript" src="report.js"></script>
+    <script type="text/javascript" src="report.history.js"></script>
+    <script
+      type="text/javascript"
+      src="assets/scripts/plato-overview.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/scripts/plato-sortable-file-list.js"
+    ></script>
+  </body>
+</html>

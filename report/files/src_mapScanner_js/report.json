@@ -1,0 +1,189 @@
+{
+  "info": {
+    "file": "src\\mapScanner.js",
+    "fileShort": "src\\mapScanner.js",
+    "fileSafe": "src_mapScanner_js",
+    "link": "files/src_mapScanner_js/index.html"
+  },
+  "complexity": {
+    "methodAggregate": {
+      "cyclomatic": 12,
+      "cyclomaticDensity": 30,
+      "halstead": {
+        "bugs": 0.538,
+        "difficulty": 34.5,
+        "effort": 55657.609,
+        "length": 259,
+        "time": 3092.089,
+        "vocabulary": 75,
+        "volume": 1613.264,
+        "operands": {
+          "distinct": 50,
+          "total": 138,
+          "identifiers": ["__stripped__"]
+        },
+        "operators": {
+          "distinct": 25,
+          "total": 121,
+          "identifiers": ["__stripped__"]
+        }
+      },
+      "params": 7,
+      "sloc": { "logical": 40, "physical": 71 }
+    },
+    "settings": {
+      "commonjs": true,
+      "forin": false,
+      "logicalor": true,
+      "switchcase": true,
+      "trycatch": false,
+      "newmi": true
+    },
+    "classes": [],
+    "dependencies": [
+      { "line": 10, "path": "./tile", "type": "esm" },
+      { "line": 11, "path": "./tileValues", "type": "esm" }
+    ],
+    "errors": [],
+    "lineEnd": 71,
+    "lineStart": 1,
+    "maintainability": 62.165,
+    "methods": [
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 50,
+        "halstead": {
+          "bugs": 0.01,
+          "difficulty": 2.25,
+          "effort": 69.482,
+          "length": 11,
+          "time": 3.86,
+          "vocabulary": 7,
+          "volume": 30.881,
+          "operands": {
+            "distinct": 4,
+            "total": 6,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 3,
+            "total": 5,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 2, "physical": 4 },
+        "errors": [],
+        "lineEnd": 20,
+        "lineStart": 17,
+        "name": "MapScanner"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 100,
+        "halstead": {
+          "bugs": 0.005,
+          "difficulty": 2.25,
+          "effort": 31.346,
+          "length": 6,
+          "time": 1.741,
+          "vocabulary": 5,
+          "volume": 13.932,
+          "operands": {
+            "distinct": 2,
+            "total": 3,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 3,
+            "total": 3,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 1, "physical": 3 },
+        "errors": [],
+        "lineEnd": 25,
+        "lineStart": 23,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 33.333,
+        "halstead": {
+          "bugs": 0.016,
+          "difficulty": 3.6,
+          "effort": 171.176,
+          "length": 15,
+          "time": 9.51,
+          "vocabulary": 9,
+          "volume": 47.549,
+          "operands": {
+            "distinct": 5,
+            "total": 9,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 4,
+            "total": 6,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 2,
+        "sloc": { "logical": 3, "physical": 3 },
+        "errors": [],
+        "lineEnd": 30,
+        "lineStart": 28,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 12,
+        "cyclomaticDensity": 41.379,
+        "halstead": {
+          "bugs": 0.349,
+          "difficulty": 19.539,
+          "effort": 20481.461,
+          "length": 183,
+          "time": 1137.859,
+          "vocabulary": 53,
+          "volume": 1048.209,
+          "operands": {
+            "distinct": 38,
+            "total": 99,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 15,
+            "total": 84,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 29, "physical": 36 },
+        "errors": [],
+        "lineEnd": 68,
+        "lineStart": 33,
+        "name": "<anonymous>"
+      }
+    ],
+    "methodAverage": {
+      "cyclomatic": 3.75,
+      "cyclomaticDensity": 56.178,
+      "halstead": {
+        "bugs": 0.095,
+        "difficulty": 6.91,
+        "effort": 5188.366,
+        "length": 53.75,
+        "time": 288.243,
+        "vocabulary": 18.5,
+        "volume": 285.143,
+        "operands": { "distinct": 12.25, "total": 29.25 },
+        "operators": { "distinct": 6.25, "total": 24.5 }
+      },
+      "params": 1.75,
+      "sloc": { "logical": 8.75, "physical": 11.5 }
+    },
+    "module": "src\\mapScanner.js"
+  },
+  "jshint": { "messages": [] }
+}

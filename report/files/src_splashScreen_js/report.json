@@ -1,0 +1,280 @@
+{
+  "info": {
+    "file": "src\\splashScreen.js",
+    "fileShort": "src\\splashScreen.js",
+    "fileSafe": "src_splashScreen_js",
+    "link": "files/src_splashScreen_js/index.html"
+  },
+  "complexity": {
+    "methodAggregate": {
+      "cyclomatic": 5,
+      "cyclomaticDensity": 8.929,
+      "halstead": {
+        "bugs": 0.954,
+        "difficulty": 28.852,
+        "effort": 82561.134,
+        "length": 443,
+        "time": 4586.73,
+        "vocabulary": 88,
+        "volume": 2861.528,
+        "operands": {
+          "distinct": 71,
+          "total": 241,
+          "identifiers": ["__stripped__"]
+        },
+        "operators": {
+          "distinct": 17,
+          "total": 202,
+          "identifiers": ["__stripped__"]
+        }
+      },
+      "params": 12,
+      "sloc": { "logical": 56, "physical": 146 }
+    },
+    "settings": {
+      "commonjs": true,
+      "forin": false,
+      "logicalor": true,
+      "switchcase": true,
+      "trycatch": false,
+      "newmi": true
+    },
+    "classes": [],
+    "dependencies": [
+      { "line": 10, "path": "./config", "type": "esm" },
+      { "line": 11, "path": "./game", "type": "esm" },
+      { "line": 12, "path": "./mapGenerator", "type": "esm" },
+      { "line": 13, "path": "./simulation", "type": "esm" },
+      { "line": 14, "path": "./splashCanvas", "type": "esm" },
+      { "line": 15, "path": "./storage", "type": "esm" }
+    ],
+    "errors": [],
+    "lineEnd": 146,
+    "lineStart": 1,
+    "maintainability": 66.706,
+    "methods": [
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 50,
+        "halstead": {
+          "bugs": 0.012,
+          "difficulty": 2.8,
+          "effort": 97.634,
+          "length": 11,
+          "time": 5.424,
+          "vocabulary": 9,
+          "volume": 34.869,
+          "operands": {
+            "distinct": 5,
+            "total": 7,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 4,
+            "total": 4,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 2,
+        "sloc": { "logical": 2, "physical": 6 },
+        "errors": [],
+        "lineEnd": 34,
+        "lineStart": 29,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 50,
+        "halstead": {
+          "bugs": 0.022,
+          "difficulty": 3.056,
+          "effort": 197.771,
+          "length": 17,
+          "time": 10.987,
+          "vocabulary": 14,
+          "volume": 64.725,
+          "operands": {
+            "distinct": 9,
+            "total": 11,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 5,
+            "total": 6,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 2, "physical": 4 },
+        "errors": [],
+        "lineEnd": 33,
+        "lineStart": 30,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 3,
+        "cyclomaticDensity": 17.647,
+        "halstead": {
+          "bugs": 0.254,
+          "difficulty": 9.365,
+          "effort": 7138.383,
+          "length": 138,
+          "time": 396.577,
+          "vocabulary": 46,
+          "volume": 762.252,
+          "operands": {
+            "distinct": 37,
+            "total": 77,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 9,
+            "total": 61,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 17, "physical": 32 },
+        "errors": [],
+        "lineEnd": 68,
+        "lineStart": 37,
+        "name": "SplashScreen"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 33.333,
+        "halstead": {
+          "bugs": 0.022,
+          "difficulty": 2.357,
+          "effort": 156.605,
+          "length": 20,
+          "time": 8.7,
+          "vocabulary": 10,
+          "volume": 66.439,
+          "operands": {
+            "distinct": 7,
+            "total": 11,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 3,
+            "total": 9,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 3, "physical": 6 },
+        "errors": [],
+        "lineEnd": 77,
+        "lineStart": 72,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 2,
+        "cyclomaticDensity": 22.222,
+        "halstead": {
+          "bugs": 0.104,
+          "difficulty": 6.087,
+          "effort": 1899.827,
+          "length": 63,
+          "time": 105.546,
+          "vocabulary": 31,
+          "volume": 312.114,
+          "operands": {
+            "distinct": 23,
+            "total": 35,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 8,
+            "total": 28,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 9, "physical": 19 },
+        "errors": [],
+        "lineEnd": 99,
+        "lineStart": 81,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 2,
+        "cyclomaticDensity": 20,
+        "halstead": {
+          "bugs": 0.102,
+          "difficulty": 2.455,
+          "effort": 752.305,
+          "length": 66,
+          "time": 41.795,
+          "vocabulary": 25,
+          "volume": 306.495,
+          "operands": {
+            "distinct": 22,
+            "total": 36,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 3,
+            "total": 30,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 10, "physical": 22 },
+        "errors": [],
+        "lineEnd": 125,
+        "lineStart": 104,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 16.667,
+        "halstead": {
+          "bugs": 0.09,
+          "difficulty": 4.429,
+          "effort": 1200.269,
+          "length": 57,
+          "time": 66.682,
+          "vocabulary": 27,
+          "volume": 271.029,
+          "operands": {
+            "distinct": 21,
+            "total": 31,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 6,
+            "total": 26,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 6, "physical": 14 },
+        "errors": [],
+        "lineEnd": 143,
+        "lineStart": 130,
+        "name": "<anonymous>"
+      }
+    ],
+    "methodAverage": {
+      "cyclomatic": 1.571,
+      "cyclomaticDensity": 29.981,
+      "halstead": {
+        "bugs": 0.087,
+        "difficulty": 4.364,
+        "effort": 1634.685,
+        "length": 53.143,
+        "time": 90.816,
+        "vocabulary": 23.143,
+        "volume": 259.703,
+        "operands": { "distinct": 17.714, "total": 29.714 },
+        "operators": { "distinct": 5.429, "total": 23.429 }
+      },
+      "params": 1.714,
+      "sloc": { "logical": 7, "physical": 14.714 }
+    },
+    "module": "src\\splashScreen.js"
+  },
+  "jshint": { "messages": [] }
+}

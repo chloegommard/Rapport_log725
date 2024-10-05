@@ -1,0 +1,426 @@
+{
+  "info": {
+    "file": "src\\blockMapUtils.js",
+    "fileShort": "src\\blockMapUtils.js",
+    "fileSafe": "src_blockMapUtils_js",
+    "link": "files/src_blockMapUtils_js/index.html"
+  },
+  "complexity": {
+    "methodAggregate": {
+      "cyclomatic": 59,
+      "cyclomaticDensity": 21.771,
+      "halstead": {
+        "bugs": 3.927,
+        "difficulty": 105.959,
+        "effort": 1248435.134,
+        "length": 1571,
+        "time": 69357.507,
+        "vocabulary": 181,
+        "volume": 11782.258,
+        "operands": {
+          "distinct": 146,
+          "total": 884,
+          "identifiers": ["__stripped__"]
+        },
+        "operators": {
+          "distinct": 35,
+          "total": 687,
+          "identifiers": ["__stripped__"]
+        }
+      },
+      "params": 24,
+      "sloc": { "logical": 271, "physical": 486 }
+    },
+    "settings": {
+      "commonjs": true,
+      "forin": false,
+      "logicalor": true,
+      "switchcase": true,
+      "trycatch": false,
+      "newmi": true
+    },
+    "classes": [],
+    "dependencies": [
+      { "line": 10, "path": "./blockMap", "type": "esm" },
+      { "line": 11, "path": "./commercial", "type": "esm" },
+      { "line": 12, "path": "./industrial", "type": "esm" },
+      { "line": 13, "path": "./miscUtils", "type": "esm" },
+      { "line": 14, "path": "./random", "type": "esm" },
+      { "line": 15, "path": "./residential", "type": "esm" },
+      { "line": 16, "path": "./tileValues", "type": "esm" }
+    ],
+    "errors": [],
+    "lineEnd": 486,
+    "lineStart": 1,
+    "maintainability": 51.099,
+    "methods": [
+      {
+        "cyclomatic": 9,
+        "cyclomaticDensity": 39.13,
+        "halstead": {
+          "bugs": 0.273,
+          "difficulty": 40.889,
+          "effort": 33491.333,
+          "length": 161,
+          "time": 1860.63,
+          "vocabulary": 34,
+          "volume": 819.082,
+          "operands": {
+            "distinct": 18,
+            "total": 92,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 16,
+            "total": 69,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 23, "physical": 29 },
+        "errors": [],
+        "lineEnd": 63,
+        "lineStart": 35,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 5,
+        "cyclomaticDensity": 31.25,
+        "halstead": {
+          "bugs": 0.122,
+          "difficulty": 22.615,
+          "effort": 8280.088,
+          "length": 77,
+          "time": 460.005,
+          "vocabulary": 27,
+          "volume": 366.126,
+          "operands": {
+            "distinct": 13,
+            "total": 42,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 14,
+            "total": 35,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 16, "physical": 18 },
+        "errors": [],
+        "lineEnd": 84,
+        "lineStart": 67,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 6,
+        "cyclomaticDensity": 33.333,
+        "halstead": {
+          "bugs": 0.128,
+          "difficulty": 23.692,
+          "effort": 9124.995,
+          "length": 81,
+          "time": 506.944,
+          "vocabulary": 27,
+          "volume": 385.146,
+          "operands": {
+            "distinct": 13,
+            "total": 44,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 14,
+            "total": 37,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 18, "physical": 20 },
+        "errors": [],
+        "lineEnd": 107,
+        "lineStart": 88,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 10,
+        "cyclomaticDensity": 55.556,
+        "halstead": {
+          "bugs": 0.112,
+          "difficulty": 7.618,
+          "effort": 2549.644,
+          "length": 73,
+          "time": 141.647,
+          "vocabulary": 24,
+          "volume": 334.702,
+          "operands": {
+            "distinct": 17,
+            "total": 37,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 7,
+            "total": 36,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 18, "physical": 42 },
+        "errors": [],
+        "lineEnd": 152,
+        "lineStart": 111,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 3,
+        "cyclomaticDensity": 27.273,
+        "halstead": {
+          "bugs": 0.082,
+          "difficulty": 16,
+          "effort": 3941.598,
+          "length": 57,
+          "time": 218.978,
+          "vocabulary": 20,
+          "volume": 246.35,
+          "operands": {
+            "distinct": 10,
+            "total": 32,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 10,
+            "total": 25,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 11, "physical": 15 },
+        "errors": [],
+        "lineEnd": 170,
+        "lineStart": 156,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 18,
+        "cyclomaticDensity": 24.324,
+        "halstead": {
+          "bugs": 0.961,
+          "difficulty": 46.324,
+          "effort": 133586.36,
+          "length": 441,
+          "time": 7421.464,
+          "vocabulary": 93,
+          "volume": 2883.769,
+          "operands": {
+            "distinct": 68,
+            "total": 252,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 25,
+            "total": 189,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 74, "physical": 127 },
+        "errors": [],
+        "lineEnd": 309,
+        "lineStart": 183,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 5,
+        "cyclomaticDensity": 14.706,
+        "halstead": {
+          "bugs": 0.342,
+          "difficulty": 21.864,
+          "effort": 22462.318,
+          "length": 186,
+          "time": 1247.907,
+          "vocabulary": 46,
+          "volume": 1027.383,
+          "operands": {
+            "distinct": 33,
+            "total": 111,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 13,
+            "total": 75,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 2,
+        "sloc": { "logical": 34, "physical": 52 },
+        "errors": [],
+        "lineEnd": 368,
+        "lineStart": 317,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 3,
+        "cyclomaticDensity": 27.273,
+        "halstead": {
+          "bugs": 0.116,
+          "difficulty": 12.353,
+          "effort": 4287.79,
+          "length": 73,
+          "time": 238.211,
+          "vocabulary": 27,
+          "volume": 347.107,
+          "operands": {
+            "distinct": 17,
+            "total": 42,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 10,
+            "total": 31,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 2,
+        "sloc": { "logical": 11, "physical": 16 },
+        "errors": [],
+        "lineEnd": 388,
+        "lineStart": 373,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 4,
+        "cyclomaticDensity": 57.143,
+        "halstead": {
+          "bugs": 0.079,
+          "difficulty": 7.286,
+          "effort": 1731.858,
+          "length": 55,
+          "time": 96.214,
+          "vocabulary": 20,
+          "volume": 237.706,
+          "operands": {
+            "distinct": 14,
+            "total": 34,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 6,
+            "total": 21,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 4,
+        "sloc": { "logical": 7, "physical": 12 },
+        "errors": [],
+        "lineEnd": 403,
+        "lineStart": 392,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 5,
+        "cyclomaticDensity": 15.152,
+        "halstead": {
+          "bugs": 0.378,
+          "difficulty": 23,
+          "effort": 26085.942,
+          "length": 202,
+          "time": 1449.219,
+          "vocabulary": 49,
+          "volume": 1134.171,
+          "operands": {
+            "distinct": 35,
+            "total": 115,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 14,
+            "total": 87,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 2,
+        "sloc": { "logical": 33, "physical": 53 },
+        "errors": [],
+        "lineEnd": 462,
+        "lineStart": 410,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 100,
+        "halstead": {
+          "bugs": 0.003,
+          "difficulty": 1.5,
+          "effort": 15,
+          "length": 5,
+          "time": 0.833,
+          "vocabulary": 4,
+          "volume": 10,
+          "operands": {
+            "distinct": 2,
+            "total": 3,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 2,
+            "total": 2,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 1, "physical": 1 },
+        "errors": [],
+        "lineEnd": 447,
+        "lineStart": 447,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 20,
+        "halstead": {
+          "bugs": 0.03,
+          "difficulty": 7.6,
+          "effort": 674.56,
+          "length": 28,
+          "time": 37.476,
+          "vocabulary": 9,
+          "volume": 88.758,
+          "operands": {
+            "distinct": 5,
+            "total": 19,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 4,
+            "total": 9,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 5, "physical": 8 },
+        "errors": [],
+        "lineEnd": 473,
+        "lineStart": 466,
+        "name": "<anonymous>"
+      }
+    ],
+    "methodAverage": {
+      "cyclomatic": 5.833,
+      "cyclomaticDensity": 37.095,
+      "halstead": {
+        "bugs": 0.219,
+        "difficulty": 19.228,
+        "effort": 20519.29,
+        "length": 119.917,
+        "time": 1139.961,
+        "vocabulary": 31.667,
+        "volume": 656.692,
+        "operands": { "distinct": 20.417, "total": 68.583 },
+        "operators": { "distinct": 11.25, "total": 51.333 }
+      },
+      "params": 2,
+      "sloc": { "logical": 20.917, "physical": 32.75 }
+    },
+    "module": "src\\blockMapUtils.js"
+  },
+  "jshint": { "messages": [] }
+}

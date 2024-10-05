@@ -1,0 +1,69 @@
+{
+  "info": {
+    "file": "src\\config.js",
+    "fileShort": "src\\config.js",
+    "fileSafe": "src_config_js",
+    "link": "files/src_config_js/index.html"
+  },
+  "complexity": {
+    "methodAggregate": {
+      "cyclomatic": 1,
+      "cyclomaticDensity": 25,
+      "halstead": {
+        "bugs": 0.019,
+        "difficulty": 4.5,
+        "effort": 254.127,
+        "length": 17,
+        "time": 14.118,
+        "vocabulary": 10,
+        "volume": 56.473,
+        "operands": {
+          "distinct": 5,
+          "total": 9,
+          "identifiers": ["__stripped__"]
+        },
+        "operators": {
+          "distinct": 5,
+          "total": 8,
+          "identifiers": ["__stripped__"]
+        }
+      },
+      "params": 0,
+      "sloc": { "logical": 4, "physical": 21 }
+    },
+    "settings": {
+      "commonjs": true,
+      "forin": false,
+      "logicalor": true,
+      "switchcase": true,
+      "trycatch": false,
+      "newmi": true
+    },
+    "classes": [],
+    "dependencies": [],
+    "errors": [],
+    "lineEnd": 21,
+    "lineStart": 1,
+    "maintainability": 75.791,
+    "methods": [],
+    "methodAverage": {
+      "cyclomatic": 1,
+      "cyclomaticDensity": 25,
+      "halstead": {
+        "bugs": 0.019,
+        "difficulty": 4.5,
+        "effort": 254.127,
+        "length": 17,
+        "time": 14.118,
+        "vocabulary": 10,
+        "volume": 56.473,
+        "operands": { "distinct": 5, "total": 9 },
+        "operators": { "distinct": 5, "total": 8 }
+      },
+      "params": 0,
+      "sloc": { "logical": 4, "physical": 21 }
+    },
+    "module": "src\\config.js"
+  },
+  "jshint": { "messages": [] }
+}

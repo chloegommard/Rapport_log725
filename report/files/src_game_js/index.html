@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plato - src\game.js</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="../../assets/css/vendor/morris.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet" />
+    <link href="../../assets/css/plato.css" rel="stylesheet" />
+    <link href="../../assets/css/plato-file.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="http://github.com/es-analysis/plato"
+          >Plato on Github</a
+        >
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="../../index.html">Report Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>src\game.js</h1>
+      </div>
+    </div>
+
+    <div class="container aggregate-stats">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Maintainability
+            <a
+              href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability."
+                data-original-title="Maintainability Index"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">58.15</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Lines of code
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h2>
+          <p class="stat">707</p>
+        </div>
+      </div>
+      <div class="row historical">
+        <div class="col-md-6">
+          <p id="chart_historical_maint" class="chart"></p>
+        </div>
+        <div class="col-md-6">
+          <p id="chart_historical_sloc" class="chart"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Difficulty
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="The difficulty measure is related to the difficulty of the program to write or understand."
+                data-original-title="Difficulty"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">69.89</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Estimated Errors
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation."
+                data-original-title="Delivered Bugs"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">8.95</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container charts">
+      <div class="row">
+        <h2 class="header">Function weight</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By Complexity
+            <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="This metric counts the number of distinct paths through a block of code. Lower values are better."
+                data-original-title="Cyclomatic Complexity"
+                data-container="body"
+              ></i
+            ></a>
+          </h3>
+          <div id="fn-by-complexity" class="stat"></div>
+        </div>
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By SLOC
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h3>
+          <div id="fn-by-sloc" class="stat"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <textarea id="file-source" class="col-md-12">
+/* micropolisJS. Adapted by Graeme McCutcheon from Micropolis.
+ *
+ * This code is released under the GNU GPL v3, with some additional terms.
+ * Please see the files LICENSE and COPYING for details. Alternatively,
+ * consult http://micropolisjs.graememcc.co.uk/LICENSE and
+ * http://micropolisjs.graememcc.co.uk/COPYING
+ *
+ */
+
+import { BaseTool } from &#039;./baseTool&#039;;
+import { BudgetWindow } from &#039;./budgetWindow&#039;;
+import { Config } from &#039;./config&#039;;
+import { CongratsWindow } from &#039;./congratsWindow&#039;;
+import { DebugWindow } from &#039;./debugWindow&#039;;
+import { DisasterWindow } from &#039;./disasterWindow&#039;;
+import { EvaluationWindow } from &#039;./evaluationWindow&#039;;
+import { GameCanvas } from &#039;./gameCanvas&#039;;
+import { GameMap } from &#039;./gameMap&#039;;
+import { InfoBar } from &#039;./infoBar&#039;;
+import { InputStatus } from &#039;./inputStatus&#039;;
+import * as Messages from &#039;./messages&#039;;
+import { MonsterTV } from &#039;./monsterTV&#039;;
+import { NagWindow } from &#039;./nagWindow&#039;;
+import { Notification } from &#039;./notification&#039;;
+import { QueryWindow } from &#039;./queryWindow&#039;;
+import { Random } from &#039;./random&#039;;
+import { RCI } from &#039;./rci&#039;;
+import { SaveWindow } from &#039;./saveWindow&#039;;
+import { ScreenshotLinkWindow } from &#039;./screenshotLinkWindow&#039;;
+import { ScreenshotWindow } from &#039;./screenshotWindow&#039;;
+import { SettingsWindow } from &#039;./settingsWindow&#039;;
+import { Simulation } from &#039;./simulation&#039;;
+import { Storage } from &#039;./storage&#039;;
+import { Text } from &#039;./text&#039;;
+import { TouchWarnWindow } from &#039;./touchWarnWindow&#039;;
+
+var disasterTimeout = 20 * 1000;
+
+
+function Game(gameMap, tileSet, snowTileSet, spriteSheet, difficulty, name) {
+  difficulty = difficulty || 0;
+  var savedGame;
+
+  if (!gameMap.isSavedGame) {
+    this.gameMap = gameMap;
+    savedGame = null;
+  } else {
+    this.gameMap = new GameMap(120, 100);
+    savedGame = gameMap;
+  }
+
+  this.tileSet = tileSet;
+  this.snowTileSet = snowTileSet;
+  this.defaultSpeed = Simulation.SPEED_MED;
+  this.simulation = new Simulation(this.gameMap, difficulty, this.defaultSpeed, savedGame);
+
+  this.name = name || &#039;MyTown&#039;;
+  this.everClicked = false;
+
+  if (savedGame)
+    this.load(savedGame);
+
+  this.rci = new RCI(&#039;RCIContainer&#039;, this.simulation);
+
+  // Note: must init canvas before inputStatus
+  this.gameCanvas = new GameCanvas(&#039;canvasContainer&#039;);
+  this.gameCanvas.init(this.gameMap, this.tileSet, spriteSheet);
+  this.inputStatus = new InputStatus(this.gameMap, tileSet.tileWidth);
+
+  this.dialogOpen = false;
+  this._openWindow = null;
+  this.mouse = null;
+  this.lastCoord = null;
+  this.simNeededBudget = false;
+  this.isPaused = false;
+  this.lastBadMessageTime = null;
+
+  var self = this;
+  if (!this.everClicked) {
+    this.nagger = window.setTimeout(function() {
+      self.dialogOpen = true;
+      self._openWindow = &#039;nagWindow&#039;;
+      self.nagWindow.open();
+    }, 30 * 60 * 1000);
+
+    $(&#039;.nag&#039;).each(function() {
+      $(this).click(function(e) {
+        if (self.nagger !== null) {
+          window.clearTimeout(self.nagger);
+        self.nagger = null;
+        self.everClicked = true;
+      }
+
+      return true;
+      });
+    });
+  }
+
+  // Initialise monsterTV
+  this.monsterTV = new MonsterTV(this.gameMap, tileSet, spriteSheet, this.gameCanvas.animationManager);
+
+  var opacityLayerID = &#039;opaque&#039;;
+
+  this.genericDialogClosure = genericDialogClosure.bind(this);
+
+  // Hook up listeners to open/close evaluation window
+  this.handleEvalRequest = makeWindowOpenHandler(&#039;eval&#039;, function() {
+    return [this.simulation.evaluation];
+  }.bind(this));
+
+  this.evalWindow = new EvaluationWindow(opacityLayerID, &#039;evalWindow&#039;);
+  this.evalWindow.addEventListener(Messages.EVAL_WINDOW_CLOSED, this.genericDialogClosure);
+  this.inputStatus.addEventListener(Messages.EVAL_REQUESTED, this.handleEvalRequest.bind(this));
+
+  // ... and similarly for the budget window
+  this.handleBudgetRequest = makeWindowOpenHandler(&#039;budget&#039;, function() {
+    var budgetData = {
+      roadMaintenanceBudget: this.simulation.budget.roadMaintenanceBudget,
+      roadRate: Math.floor(this.simulation.budget.roadPercent * 100),
+      fireMaintenanceBudget: this.simulation.budget.fireMaintenanceBudget,
+      fireRate: Math.floor(this.simulation.budget.firePercent * 100),
+      policeMaintenanceBudget: this.simulation.budget.policeMaintenanceBudget,
+      policeRate: Math.floor(this.simulation.budget.policePercent * 100),
+      taxRate: this.simulation.budget.cityTax,
+      totalFunds: this.simulation.budget.totalFunds,
+      taxesCollected: this.simulation.budget.taxFund
+    };
+
+    return [budgetData];
+  }.bind(this));
+
+  this.budgetWindow = new BudgetWindow(opacityLayerID, &#039;budget&#039;);
+  this.budgetWindow.addEventListener(Messages.BUDGET_WINDOW_CLOSED, this.handleBudgetWindowClosure.bind(this));
+  this.inputStatus.addEventListener(Messages.BUDGET_REQUESTED, this.handleBudgetRequest.bind(this));
+
+  // ... and also the disaster window
+  this.disasterWindow = new DisasterWindow(opacityLayerID, &#039;disasterWindow&#039;);
+  this.disasterWindow.addEventListener(Messages.DISASTER_WINDOW_CLOSED, this.handleDisasterWindowClosure.bind(this));
+  this.inputStatus.addEventListener(Messages.DISASTER_REQUESTED, this.handleDisasterRequest.bind(this));
+
+  // ... the debug window
+  this.debugWindow = new DebugWindow(opacityLayerID, &#039;debugWindow&#039;);
+  this.debugWindow.addEventListener(Messages.DEBUG_WINDOW_CLOSED, this.handleDebugWindowClosure.bind(this));
+  this.inputStatus.addEventListener(Messages.DEBUG_WINDOW_REQUESTED, this.handleDebugRequest.bind(this));
+
+  // ... the settings window
+  this.handleSettingsRequest = makeWindowOpenHandler(&#039;settings&#039;, function() {
+    return [{autoBudget: this.simulation.budget.autoBudget, autoBulldoze: BaseTool.getAutoBulldoze(),
+             speed: this.defaultSpeed, disasters: this.simulation.disasterManager.disastersEnabled}];
+  }.bind(this));
+  this.settingsWindow = new SettingsWindow(opacityLayerID, &#039;settingsWindow&#039;);
+  this.settingsWindow.addEventListener(Messages.SETTINGS_WINDOW_CLOSED, this.handleSettingsWindowClosure.bind(this));
+  this.inputStatus.addEventListener(Messages.SETTINGS_WINDOW_REQUESTED, this.handleSettingsRequest.bind(this));
+
+  // ... the screenshot window
+  this.screenshotWindow = new ScreenshotWindow(opacityLayerID, &#039;screenshotWindow&#039;);
+  this.screenshotWindow.addEventListener(Messages.SCREENSHOT_WINDOW_CLOSED, this.handleScreenshotWindowClosure.bind(this));
+  this.inputStatus.addEventListener(Messages.SCREENSHOT_WINDOW_REQUESTED, this.handleScreenshotRequest.bind(this));
+
+  // ... the screenshot link window
+  this.screenshotLinkWindow = new ScreenshotLinkWindow(opacityLayerID, &#039;screenshotLinkWindow&#039;);
+  this.screenshotLinkWindow.addEventListener(Messages.SCREENSHOT_LINK_CLOSED, this.genericDialogClosure);
+
+  // ... the save confirmation window
+  this.saveWindow = new SaveWindow(opacityLayerID, &#039;saveWindow&#039;);
+  this.saveWindow.addEventListener(Messages.SAVE_WINDOW_CLOSED, this.genericDialogClosure);
+
+  // ... the nag confirmation window
+  this.nagWindow = new NagWindow(opacityLayerID, &#039;nagWindow&#039;);
+  this.nagWindow.addEventListener(Messages.NAG_WINDOW_CLOSED, this.genericDialogClosure);
+
+  // ... the touch warn window
+  this.touchWindow = new TouchWarnWindow(opacityLayerID, &#039;touchWarnWindow&#039;);
+  this.touchWindow.addEventListener(Messages.TOUCH_WINDOW_CLOSED, this.genericDialogClosure);
+
+  // ... and finally the query window
+  this.queryWindow = new QueryWindow(opacityLayerID, &#039;queryWindow&#039;);
+  this.queryWindow.addEventListener(Messages.QUERY_WINDOW_CLOSED, this.genericDialogClosure);
+  this.inputStatus.addEventListener(Messages.QUERY_WINDOW_NEEDED, this.handleQueryRequest.bind(this));
+
+  // Listen for clicks on the save button
+  this.inputStatus.addEventListener(Messages.SAVE_REQUESTED, this.handleSave.bind(this));
+
+  // Listen for front end messages
+  this.simulation.addEventListener(Messages.FRONT_END_MESSAGE, this.processFrontEndMessage.bind(this));
+
+  // Listen for budget messages
+  this.simulation.addEventListener(Messages.BUDGET_NEEDED, this.handleMandatoryBudget.bind(this));
+
+  // Listen for tool clicks
+  this.inputStatus.addEventListener(Messages.TOOL_CLICKED, this.handleTool.bind(this));
+
+  // And pauses
+  this.inputStatus.addEventListener(Messages.SPEED_CHANGE, this.handlePause.bind(this));
+
+  // And date changes
+  // XXX Not yet activated
+  //this.simulation.addEventListener(Messages.DATE_UPDATED, this.onDateChange.bind(this));
+
+  this.infoBar = InfoBar(&#039;cclass&#039;, &#039;population&#039;, &#039;score&#039;, &#039;funds&#039;, &#039;date&#039;, &#039;name&#039;);
+  var initialValues = {
+    classification: this.simulation.evaluation.cityClass,
+    population: this.simulation.evaluation.cityPop,
+    score: this.simulation.evaluation.cityScore,
+    funds: this.simulation.budget.totalFunds,
+    date: this.simulation.getDate(),
+    name: this.name
+  };
+  this.infoBar(this.simulation, initialValues);
+
+  this._notificationBar = new Notification(&#039;#notifications&#039;, this.gameCanvas, Text.messageText[Messages.WELCOME]);
+
+  // Track when various milestones are first reached
+  this._reachedTown = this._reachedCity = this._reachedCapital = this._reachedMetropolis = this._reacedMegalopolis = false;
+  this.congratsWindow = new CongratsWindow(opacityLayerID, &#039;congratsWindow&#039;);
+  this.congratsWindow.addEventListener(Messages.CONGRATS_WINDOW_CLOSED, this.genericDialogClosure);
+
+  // Listen for touches, so we can warn tablet users
+  this.touchListener = touchListener.bind(this);
+  window.addEventListener(&#039;touchstart&#039;, this.touchListener, false);
+
+  // Unhide controls
+  this.revealControls();
+
+  // Run the sim
+  this.tick = tick.bind(this);
+  this.tick();
+
+  // Paint the map
+  var debug = Config.debug || Config.gameDebug;
+  if (debug) {
+    $(&#039;#debug&#039;).toggle();
+    this.frameCount = 0;
+    this.animStart = new Date();
+    this.lastElapsed = -1;
+  }
+
+  this.commonAnimate = commonAnimate.bind(this);
+  this.animate = (debug ? debugAnimate : this.commonAnimate).bind(this);
+  this.animate();
+}
+
+
+Game.prototype.save = function() {
+  var saveData = {name: this.name, everClicked: this.everClicked};
+  BaseTool.save(saveData);
+  this.simulation.save(saveData);
+
+  Storage.saveGame(saveData);
+};
+
+
+Game.prototype.load = function(saveData) {
+  this.name = saveData.name;
+  this.everClicked = saveData.everClicked;
+  BaseTool.load(saveData);
+  this.simulation.load(saveData);
+};
+
+
+var nextFrame =
+  window.requestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame;
+
+
+Game.prototype.revealControls = function() {
+ $(&#039;.initialHidden&#039;).each(function(e) {
+   $(this).removeClass(&#039;initialHidden&#039;);
+ });
+
+ this._notificationBar.news({subject: Messages.WELCOME});
+ this.rci.update({residential: 750, commercial: 750, industrial: 750});
+};
+
+
+var genericDialogClosure = function() {
+  this.dialogOpen = false;
+  this._openWindow = null;
+};
+
+
+Game.prototype.onDateChange = function(date) {
+  if (date.month === 10 &amp;&amp; Random.getChance(10))
+    this.gameCanvas.changeTileSet(this.snowTileSet);
+  else if (date.month === 1)
+    this.gameCanvas.changeTileSet(this.tileSet);
+};
+
+
+Game.prototype.handleDisasterWindowClosure = function(request) {
+  this.dialogOpen = false;
+
+  if (request === DisasterWindow.DISASTER_NONE)
+    return;
+
+  switch (request) {
+    case DisasterWindow.DISASTER_MONSTER:
+      this.simulation.spriteManager.makeMonster();
+      break;
+
+    case DisasterWindow.DISASTER_FIRE:
+      this.simulation.disasterManager.makeFire();
+      break;
+
+    case DisasterWindow.DISASTER_FLOOD:
+      this.simulation.disasterManager.makeFlood();
+      break;
+
+    case DisasterWindow.DISASTER_CRASH:
+      this.simulation.disasterManager.makeCrash();
+      break;
+
+    case DisasterWindow.DISASTER_MELTDOWN:
+      this.simulation.disasterManager.makeMeltdown();
+      break;
+
+    case DisasterWindow.DISASTER_TORNADO:
+      this.simulation.spriteManager.makeTornado();
+  }
+};
+
+
+Game.prototype.handleSettingsWindowClosure = function(actions) {
+  this.dialogOpen = false;
+
+  for (var i = 0, l = actions.length; i &lt; l; i++) {
+    var a = actions[i];
+
+    switch (a.action) {
+      case SettingsWindow.AUTOBUDGET:
+        this.simulation.budget.setAutoBudget(a.data);
+        break;
+
+      case SettingsWindow.AUTOBULLDOZE:
+        BaseTool.setAutoBulldoze(a.data);
+        break;
+
+      case SettingsWindow.SPEED:
+        this.defaultSpeed = a.data;
+        this.simulation.setSpeed(this.defaultSpeed);
+        break;
+
+      case SettingsWindow.DISASTERS_CHANGED:
+        this.simulation.disasterManager.disastersEnabled = a.data;
+        break;
+
+      default:
+        console.warn(&#039;Unexpected action&#039;, a);
+    }
+  }
+};
+
+
+Game.prototype.handleDebugWindowClosure = function(actions) {
+  this.dialogOpen = false;
+
+  for (var i = 0, l = actions.length; i &lt; l; i++) {
+    var a = actions[i];
+
+    switch (a.action) {
+      case DebugWindow.ADD_FUNDS:
+        this.simulation.budget.spend(-20000);
+        break;
+
+      default:
+        console.warn(&#039;Unexpected action&#039;, a);
+    }
+  }
+};
+
+
+Game.prototype.handleScreenshotWindowClosure = function(action) {
+  this.dialogOpen = false;
+
+  if (action === null)
+    return;
+
+  var dataURI;
+  if (action === ScreenshotWindow.SCREENSHOT_VISIBLE)
+    dataURI = this.gameCanvas.screenshotVisible();
+  else if (action === ScreenshotWindow.SCREENSHOT_ALL)
+    dataURI = this.gameCanvas.screenshotMap();
+
+  this.dialogOpen = true;
+  this._openWindow = &#039;screenshotLinkWindow&#039;;
+  this.screenshotLinkWindow.open(dataURI);
+};
+
+
+Game.prototype.handleBudgetWindowClosure = function(data) {
+  this.dialogOpen = false;
+
+  if (!data.cancelled) {
+    this.simulation.budget.roadPercent = data.roadPercent / 100;
+    this.simulation.budget.firePercent = data.firePercent / 100;
+    this.simulation.budget.policePercent = data.policePercent / 100;
+    this.simulation.budget.setTax(data.taxPercent - 0);
+    if (this.simNeededBudget) {
+      this.simulation.budget.doBudgetWindow();
+      this.simNeededBudget = false;
+    } else {
+      this.simulation.budget.updateFundEffects();
+    }
+  }
+};
+
+
+var makeWindowOpenHandler = function(winName, customFn) {
+  customFn = customFn || null;
+
+  return function() {
+    if (this.dialogOpen) {
+      console.warn(&#039;Request made to open &#039; + winName + &#039; window. There is a dialog open!&#039;);
+      return;
+    }
+
+    this.dialogOpen = true;
+    this._openWindow = winName + &#039;Window&#039;;
+    var win = winName + &#039;Window&#039;;
+    var data = [];
+
+    if (customFn)
+      data = customFn();
+
+    this[win].open.apply(this[win], data);
+  };
+};
+
+
+Game.prototype.handleDebugRequest = makeWindowOpenHandler(&#039;debug&#039;);
+Game.prototype.handleDisasterRequest = makeWindowOpenHandler(&#039;disaster&#039;);
+Game.prototype.handleQueryRequest = makeWindowOpenHandler(&#039;query&#039;);
+Game.prototype.handleScreenshotRequest = makeWindowOpenHandler(&#039;screenshot&#039;);
+
+
+Game.prototype.handleMandatoryBudget = function() {
+  this.simNeededBudget = true;
+  this.handleBudgetRequest();
+};
+
+
+Game.prototype.handleTool = function(data) {
+  var x = data.x;
+  var y = data.y;
+
+  // Were was the tool clicked?
+  var tileCoords = this.gameCanvas.canvasCoordinateToTileCoordinate(x, y);
+
+  if (tileCoords === null)
+    return;
+
+  var tool = this.inputStatus.currentTool;
+
+  var budget = this.simulation.budget;
+  var evaluation = this.simulation.evaluation;
+
+  // do it!
+  tool.doTool(tileCoords.x, tileCoords.y, this.simulation.blockMaps);
+
+  tool.modifyIfEnoughFunding(budget);
+  switch (tool.result) {
+    case tool.TOOLRESULT_NEEDS_BULLDOZE:
+      $(&#039;#toolOutput&#039;).text(Text.toolMessages.needsDoze);
+      break;
+
+    case tool.TOOLRESULT_NO_MONEY:
+      $(&#039;#toolOutput&#039;).text(Text.toolMessages.noMoney);
+      break;
+
+    default:
+      $(&#039;#toolOutput&#039;).html(&#039;Tools&#039;);
+  }
+};
+
+
+Game.prototype.handleSave = function() {
+  this.save();
+  this.dialogOpen = true;
+  this._openWindow = &#039;saveWindow&#039;;
+  this.saveWindow.open();
+};
+
+
+Game.prototype.handlePause = function() {
+  // XXX Currently only offer pause and run to the user
+  // No real difference among the speeds until we optimise
+  // the sim
+  this.isPaused = !this.isPaused;
+
+  if (this.isPaused)
+    this.simulation.setSpeed(Simulation.SPEED_PAUSED);
+  else
+    this.simulation.setSpeed(this.defaultSpeed);
+};
+
+
+Game.prototype.handleInput = function() {
+  if (!this.dialogOpen) {
+    // Handle keyboard movement
+
+    if (this.inputStatus.left)
+      this.gameCanvas.moveWest();
+    else if (this.inputStatus.up)
+      this.gameCanvas.moveNorth();
+    else if (this.inputStatus.right)
+      this.gameCanvas.moveEast();
+    else if (this.inputStatus.down)
+      this.gameCanvas.moveSouth();
+  }
+
+  if (this.inputStatus.escape) {
+    // We need to handle escape, as InputStatus won&#039;t know what dialogs are showing
+    if (this.dialogOpen) {
+      this.dialogOpen = false;
+      this[this._openWindow].close();
+      this._openWindow = null;
+    } else
+      this.inputStatus.clearTool();
+  }
+};
+
+
+// Will be bound on construction
+var touchListener = function(e) {
+  window.removeEventListener(&#039;touchstart&#039;, this.touchListener, false);
+  this._openWindow = &#039;touchWindow&#039;;
+  this.dialogOpen = true;
+  this.touchWindow.open();
+};
+
+
+Game.prototype.processFrontEndMessage = function(message) {
+  var subject = message.subject;
+  var d = new Date();
+
+  if (Text.goodMessages[subject] !== undefined) {
+    var cMessage = this.name + &#039; is now a &#039;;
+
+    switch (subject) {
+      case Messages.REACHED_CAPITAL:
+        if (!this._reachedCapital) {
+          this._reachedCapital = true;
+          cMessage += &#039;capital!&#039;;
+        }
+        break;
+
+      case Messages.REACHED_CITY:
+        if (!this._reachedCity) {
+          this._reachedCity = true;
+          cMessage += &#039;city!&#039;;
+        }
+        break;
+
+      case Messages.REACHED_MEGALOPOLIS:
+        if (!this._reachedMegalopolis) {
+          this._reachedMegalopolis = true;
+          cMessage += &#039;megalopolis!&#039;;
+        }
+        break;
+
+      case Messages.REACHED_METROPOLIS:
+        if (!this._reachedMetropolis) {
+          this._reachedMetropolis = true;
+          cMessage += &#039;metropolis!&#039;;
+        }
+        break;
+
+      case Messages.REACHED_TOWN:
+        if (!this._reachedTown) {
+          this._reachedTown = true;
+          cMessage += &#039;town!&#039;;
+        }
+        break;
+    }
+
+    if (this.lastBadMessageTime === null || d - this.lastBadMessageTime &gt; disasterTimeout) {
+      this.lastBadMessageTime = null;
+      this._notificationBar.goodNews(message);
+    }
+
+    if (cMessage !== (this.name + &#039; is now a &#039;)) {
+      this.dialogOpen = true;
+      this._openWindow = &#039;congratsWindow&#039;;
+      this.congratsWindow.open(cMessage);
+    }
+
+    return;
+  }
+
+  // Show disaster if applicable
+  if (message.data) {
+    if (message.data.showable)
+    this.monsterTV.show(message.data.x, message.data.y);
+    else if (message.data.trackable)
+    this.monsterTV.track(message.data.x, message.data.y, message.data.sprite);
+  }
+
+  if (Text.badMessages[subject] !== undefined) {
+    this._notificationBar.badNews(message);
+    if (Messages.DISASTER_MESSAGES.indexOf(message.subject) !== -1)
+      this.lastBadMessageTime = d;
+    return;
+  }
+
+  if (Text.neutralMessages[subject] !== undefined) {
+    if (this.lastBadMessageTime === null || d - this.lastBadMessageTime &gt; disasterTimeout) {
+      this.lastBadMessageTime = null;
+      this._notificationBar.news(message);
+    }
+    return;
+  }
+
+  console.warn(&#039;Unexpected message: &#039;, subject);
+};
+
+
+Game.prototype.calculateMouseForPaint = function() {
+  // Determine whether we need to draw a tool outline in the
+  // canvas
+  var mouse = null;
+
+  if (this.inputStatus.mouseX !== -1 &amp;&amp; this.inputStatus.toolWidth &gt; 0) {
+    var tileCoords = this.gameCanvas.canvasCoordinateToTileOffset(this.inputStatus.mouseX, this.inputStatus.mouseY);
+    if (tileCoords !== null) {
+      mouse = {};
+
+      mouse.x = tileCoords.x;
+      mouse.y = tileCoords.y;
+
+      // The inputStatus fields came from DOM attributes, so will be strings.
+      // Coerce back to numbers.
+      mouse.width = this.inputStatus.toolWidth - 0;
+      mouse.height = this.inputStatus.toolWidth - 0;
+      mouse.colour = this.inputStatus.toolColour || &#039;yellow&#039;;
+    }
+  }
+
+  return mouse;
+};
+
+
+Game.prototype.calculateSpritesForPaint = function(canvas) {
+  var origin = canvas.getTileOrigin();
+  var spriteList = this.simulation.spriteManager.getSpritesInView(origin.x, origin.y, canvas.canvasWidth, canvas.canvasHeight);
+
+  if (spriteList.length === 0)
+    return null;
+
+  return spriteList;
+};
+
+
+var tick = function() {
+  this.handleInput();
+
+  if (this.dialogOpen) {
+    window.setTimeout(this.tick, 0);
+    return;
+  }
+
+  if (!this.simulation.isPaused() &amp;&amp; !$(&#039;#tooSmall&#039;).is(&#039;:visible&#039;)) {
+    // Run the sim
+    this.simulation.simTick();
+  }
+
+  // Run this even when paused: you can still build when paused
+  this.mouse = this.calculateMouseForPaint();
+
+  window.setTimeout(this.tick, 0);
+};
+
+
+var commonAnimate = function() {
+  if (this.dialogShowing) {
+    nextFrame(this.animate);
+    return;
+  }
+
+  if (!this.isPaused)
+    this.simulation.spriteManager.moveObjects(this.simulation._constructSimData());
+
+  var sprites = this.calculateSpritesForPaint(this.gameCanvas);
+  this.gameCanvas.paint(this.mouse, sprites, this.isPaused);
+
+  sprites = this.calculateSpritesForPaint(this.monsterTV.canvas);
+  this.monsterTV.paint(sprites, this.isPaused);
+
+  nextFrame(this.animate);
+};
+
+
+var debugAnimate = function() {
+  var date = new Date();
+  var elapsed = Math.floor((date - this.animStart) / 1000);
+
+  if (elapsed &gt; this.lastElapsed &amp;&amp; this.frameCount &gt; 0) {
+    $(&#039;#fpsValue&#039;).text(Math.floor(this.frameCount/elapsed));
+    this.lastElapsed = elapsed;
+  }
+
+  this.frameCount++;
+  this.commonAnimate();
+};
+
+
+export { Game };</textarea
+        >
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>.</p>
+      </div>
+    </footer>
+
+    <script type="text/html" id="complexity-popover-template">
+      <div class="complexity-notice">
+        Complexity : {{ cyclomatic }} <br />
+        Length : {{ halstead.length }} <br />
+        Difficulty : {{ halstead.difficulty.toFixed(2) }} <br />
+        Est # bugs : {{ halstead.bugs.toFixed(2) }}<br />
+      </div>
+    </script>
+
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/core-bundle.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/codemirror.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/codemirror.markpopovertext.js"
+    ></script>
+    <script type="text/javascript" src="report.js"></script>
+    <script type="text/javascript" src="report.history.js"></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/plato-file.js"
+    ></script>
+  </body>
+</html>

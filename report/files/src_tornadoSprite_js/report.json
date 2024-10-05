@@ -1,0 +1,135 @@
+{
+  "info": {
+    "file": "src\\tornadoSprite.js",
+    "fileShort": "src\\tornadoSprite.js",
+    "fileSafe": "src_tornadoSprite_js",
+    "link": "files/src_tornadoSprite_js/index.html"
+  },
+  "complexity": {
+    "methodAggregate": {
+      "cyclomatic": 16,
+      "cyclomaticDensity": 32,
+      "halstead": {
+        "bugs": 0.832,
+        "difficulty": 36.171,
+        "effort": 90330.849,
+        "length": 381,
+        "time": 5018.38,
+        "vocabulary": 94,
+        "volume": 2497.298,
+        "operands": {
+          "distinct": 70,
+          "total": 211,
+          "identifiers": ["__stripped__"]
+        },
+        "operators": {
+          "distinct": 24,
+          "total": 170,
+          "identifiers": ["__stripped__"]
+        }
+      },
+      "params": 7,
+      "sloc": { "logical": 50, "physical": 98 }
+    },
+    "settings": {
+      "commonjs": true,
+      "forin": false,
+      "logicalor": true,
+      "switchcase": true,
+      "trycatch": false,
+      "newmi": true
+    },
+    "classes": [],
+    "dependencies": [
+      { "line": 10, "path": "./baseSprite", "type": "esm" },
+      { "line": 11, "path": "./messages", "type": "esm" },
+      { "line": 12, "path": "./miscUtils", "type": "esm" },
+      { "line": 13, "path": "./random", "type": "esm" },
+      { "line": 14, "path": "./spriteConstants", "type": "esm" },
+      { "line": 15, "path": "./spriteUtils", "type": "esm" }
+    ],
+    "errors": [],
+    "lineEnd": 98,
+    "lineStart": 1,
+    "maintainability": 51.492,
+    "methods": [
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 14.286,
+        "halstead": {
+          "bugs": 0.071,
+          "difficulty": 3.158,
+          "effort": 671.392,
+          "length": 47,
+          "time": 37.3,
+          "vocabulary": 23,
+          "volume": 212.607,
+          "operands": {
+            "distinct": 19,
+            "total": 30,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 4,
+            "total": 17,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 4,
+        "sloc": { "logical": 7, "physical": 9 },
+        "errors": [],
+        "lineEnd": 25,
+        "lineStart": 17,
+        "name": "TornadoSprite"
+      },
+      {
+        "cyclomatic": 16,
+        "cyclomaticDensity": 47.059,
+        "halstead": {
+          "bugs": 0.449,
+          "difficulty": 26.357,
+          "effort": 35497.037,
+          "length": 228,
+          "time": 1972.058,
+          "vocabulary": 60,
+          "volume": 1346.771,
+          "operands": {
+            "distinct": 42,
+            "total": 123,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 18,
+            "total": 105,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 3,
+        "sloc": { "logical": 34, "physical": 55 },
+        "errors": [],
+        "lineEnd": 88,
+        "lineStart": 34,
+        "name": "<anonymous>"
+      }
+    ],
+    "methodAverage": {
+      "cyclomatic": 8.5,
+      "cyclomaticDensity": 30.672,
+      "halstead": {
+        "bugs": 0.26,
+        "difficulty": 14.758,
+        "effort": 18084.214,
+        "length": 137.5,
+        "time": 1004.679,
+        "vocabulary": 41.5,
+        "volume": 779.689,
+        "operands": { "distinct": 30.5, "total": 76.5 },
+        "operators": { "distinct": 11, "total": 61 }
+      },
+      "params": 3.5,
+      "sloc": { "logical": 20.5, "physical": 32 }
+    },
+    "module": "src\\tornadoSprite.js"
+  },
+  "jshint": { "messages": [] }
+}

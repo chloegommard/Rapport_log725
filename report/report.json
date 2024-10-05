@@ -1,0 +1,2934 @@
+{
+  "summary": {
+    "total": { "jshint": 5, "sloc": 11990, "maintainability": 4939.562 },
+    "average": { "sloc": 155, "maintainability": "64.15", "jshint": "0.06" }
+  },
+  "reports": [
+    {
+      "info": {
+        "file": "src\\airplaneSprite.js",
+        "fileShort": "src\\airplaneSprite.js",
+        "fileSafe": "src_airplaneSprite_js",
+        "link": "files/src_airplaneSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 15,
+          "cyclomaticDensity": 25,
+          "halstead": {
+            "bugs": 1.068,
+            "difficulty": 46.212,
+            "effort": 148001.468,
+            "length": 477,
+            "time": 8222.304,
+            "vocabulary": 105,
+            "volume": 3202.695,
+            "operands": {
+              "distinct": 78,
+              "total": 267,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 27,
+              "total": 210,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 60, "physical": 110 }
+        },
+        "module": "src\\airplaneSprite.js",
+        "maintainability": 54.199
+      }
+    },
+    {
+      "info": {
+        "file": "src\\animationManager.js",
+        "fileShort": "src\\animationManager.js",
+        "fileSafe": "src_animationManager_js",
+        "link": "files/src_animationManager_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 32,
+          "cyclomaticDensity": 22.378,
+          "halstead": {
+            "bugs": 3.26,
+            "difficulty": 34.997,
+            "effort": 342249.441,
+            "length": 1150,
+            "time": 19013.858,
+            "vocabulary": 363,
+            "volume": 9779.4,
+            "operands": {
+              "distinct": 331,
+              "total": 724,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 32,
+              "total": 426,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 12,
+          "sloc": { "logical": 143, "physical": 226 }
+        },
+        "module": "src\\animationManager.js",
+        "maintainability": 50.767
+      }
+    },
+    {
+      "info": {
+        "file": "src\\baseSprite.js",
+        "fileShort": "src\\baseSprite.js",
+        "fileSafe": "src_baseSprite_js",
+        "link": "files/src_baseSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 4,
+          "cyclomaticDensity": 5.97,
+          "halstead": {
+            "bugs": 0.727,
+            "difficulty": 29.55,
+            "effort": 64449.572,
+            "length": 347,
+            "time": 3580.532,
+            "vocabulary": 78,
+            "volume": 2181.035,
+            "operands": {
+              "distinct": 60,
+              "total": 197,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 18,
+              "total": 150,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 10,
+          "sloc": { "logical": 67, "physical": 114 }
+        },
+        "module": "src\\baseSprite.js",
+        "maintainability": 70.853
+      }
+    },
+    {
+      "info": {
+        "file": "src\\baseTool.js",
+        "fileShort": "src\\baseTool.js",
+        "fileSafe": "src_baseTool_js",
+        "link": "files/src_baseTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 9,
+          "cyclomaticDensity": 13.433,
+          "halstead": {
+            "bugs": 0.835,
+            "difficulty": 31.014,
+            "effort": 77725.694,
+            "length": 387,
+            "time": 4318.094,
+            "vocabulary": 89,
+            "volume": 2506.109,
+            "operands": {
+              "distinct": 69,
+              "total": 214,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 20,
+              "total": 173,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 13,
+          "sloc": { "logical": 67, "physical": 124 }
+        },
+        "module": "src\\baseTool.js",
+        "maintainability": 76.151
+      }
+    },
+    {
+      "info": {
+        "file": "src\\blockMapUtils.js",
+        "fileShort": "src\\blockMapUtils.js",
+        "fileSafe": "src_blockMapUtils_js",
+        "link": "files/src_blockMapUtils_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 59,
+          "cyclomaticDensity": 21.771,
+          "halstead": {
+            "bugs": 3.927,
+            "difficulty": 105.959,
+            "effort": 1248435.134,
+            "length": 1571,
+            "time": 69357.507,
+            "vocabulary": 181,
+            "volume": 11782.258,
+            "operands": {
+              "distinct": 146,
+              "total": 884,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 35,
+              "total": 687,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 24,
+          "sloc": { "logical": 271, "physical": 486 }
+        },
+        "module": "src\\blockMapUtils.js",
+        "maintainability": 51.099
+      }
+    },
+    {
+      "info": {
+        "file": "src\\boatSprite.js",
+        "fileShort": "src\\boatSprite.js",
+        "fileSafe": "src_boatSprite_js",
+        "link": "files/src_boatSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 31,
+          "cyclomaticDensity": 30.392,
+          "halstead": {
+            "bugs": 1.741,
+            "difficulty": 79.917,
+            "effort": 417511.696,
+            "length": 750,
+            "time": 23195.094,
+            "vocabulary": 125,
+            "volume": 5224.338,
+            "operands": {
+              "distinct": 90,
+              "total": 411,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 35,
+              "total": 339,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 10,
+          "sloc": { "logical": 102, "physical": 185 }
+        },
+        "module": "src\\boatSprite.js",
+        "maintainability": 50.537
+      }
+    },
+    {
+      "info": {
+        "file": "src\\budget.js",
+        "fileShort": "src\\budget.js",
+        "fileSafe": "src_budget_js",
+        "link": "files/src_budget_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 22,
+          "cyclomaticDensity": 13.333,
+          "halstead": {
+            "bugs": 2.867,
+            "difficulty": 77.16,
+            "effort": 663605.247,
+            "length": 1182,
+            "time": 36866.958,
+            "vocabulary": 155,
+            "volume": 8600.379,
+            "operands": {
+              "distinct": 125,
+              "total": 643,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 30,
+              "total": 539,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 12,
+          "sloc": { "logical": 165, "physical": 284 }
+        },
+        "module": "src\\budget.js",
+        "maintainability": 60.08
+      }
+    },
+    {
+      "info": {
+        "file": "src\\budgetWindow.js",
+        "fileShort": "src\\budgetWindow.js",
+        "fileSafe": "src_budgetWindow_js",
+        "link": "files/src_budgetWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 12.371,
+          "halstead": {
+            "bugs": 1.675,
+            "difficulty": 41.25,
+            "effort": 207281.71,
+            "length": 709,
+            "time": 11515.651,
+            "vocabulary": 136,
+            "volume": 5025.011,
+            "operands": {
+              "distinct": 112,
+              "total": 385,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 24,
+              "total": 324,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 11,
+          "sloc": { "logical": 97, "physical": 148 }
+        },
+        "module": "src\\budgetWindow.js",
+        "maintainability": 61.852
+      }
+    },
+    {
+      "info": {
+        "file": "src\\buildingTool.js",
+        "fileShort": "src\\buildingTool.js",
+        "fileSafe": "src_buildingTool_js",
+        "link": "files/src_buildingTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 17,
+          "cyclomaticDensity": 26.984,
+          "halstead": {
+            "bugs": 0.825,
+            "difficulty": 49.719,
+            "effort": 122981.445,
+            "length": 388,
+            "time": 6832.302,
+            "vocabulary": 83,
+            "volume": 2473.515,
+            "operands": {
+              "distinct": 57,
+              "total": 218,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 26,
+              "total": 170,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 14,
+          "sloc": { "logical": 63, "physical": 115 }
+        },
+        "module": "src\\buildingTool.js",
+        "maintainability": 59.421
+      }
+    },
+    {
+      "info": {
+        "file": "src\\bulldozerTool.js",
+        "fileShort": "src\\bulldozerTool.js",
+        "fileSafe": "src_bulldozerTool_js",
+        "link": "files/src_bulldozerTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 33,
+          "cyclomaticDensity": 37.079,
+          "halstead": {
+            "bugs": 1.323,
+            "difficulty": 50.622,
+            "effort": 200995.853,
+            "length": 570,
+            "time": 11166.436,
+            "vocabulary": 125,
+            "volume": 3970.497,
+            "operands": {
+              "distinct": 94,
+              "total": 307,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 31,
+              "total": 263,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 9,
+          "sloc": { "logical": 89, "physical": 143 }
+        },
+        "module": "src\\bulldozerTool.js",
+        "maintainability": 51.822
+      }
+    },
+    {
+      "info": {
+        "file": "src\\census.js",
+        "fileShort": "src\\census.js",
+        "fileSafe": "src_census_js",
+        "link": "files/src_census_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 10,
+          "cyclomaticDensity": 10.309,
+          "halstead": {
+            "bugs": 1.637,
+            "difficulty": 38.7,
+            "effort": 190094.028,
+            "length": 691,
+            "time": 10560.779,
+            "vocabulary": 138,
+            "volume": 4911.99,
+            "operands": {
+              "distinct": 115,
+              "total": 387,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 23,
+              "total": 304,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 4,
+          "sloc": { "logical": 97, "physical": 145 }
+        },
+        "module": "src\\census.js",
+        "maintainability": 61.991
+      }
+    },
+    {
+      "info": {
+        "file": "src\\commercial.js",
+        "fileShort": "src\\commercial.js",
+        "fileSafe": "src_commercial_js",
+        "link": "files/src_commercial_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 15,
+          "cyclomaticDensity": 29.412,
+          "halstead": {
+            "bugs": 0.997,
+            "difficulty": 49.257,
+            "effort": 147254.895,
+            "length": 449,
+            "time": 8180.827,
+            "vocabulary": 101,
+            "volume": 2989.537,
+            "operands": {
+              "distinct": 74,
+              "total": 270,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 27,
+              "total": 179,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 30,
+          "sloc": { "logical": 51, "physical": 148 }
+        },
+        "module": "src\\commercial.js",
+        "maintainability": 63.76
+      }
+    },
+    {
+      "info": {
+        "file": "src\\config.js",
+        "fileShort": "src\\config.js",
+        "fileSafe": "src_config_js",
+        "link": "files/src_config_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 25,
+          "halstead": {
+            "bugs": 0.019,
+            "difficulty": 4.5,
+            "effort": 254.127,
+            "length": 17,
+            "time": 14.118,
+            "vocabulary": 10,
+            "volume": 56.473,
+            "operands": {
+              "distinct": 5,
+              "total": 9,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 5,
+              "total": 8,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 0,
+          "sloc": { "logical": 4, "physical": 21 }
+        },
+        "module": "src\\config.js",
+        "maintainability": 75.791
+      }
+    },
+    {
+      "info": {
+        "file": "src\\congratsWindow.js",
+        "fileShort": "src\\congratsWindow.js",
+        "fileSafe": "src_congratsWindow_js",
+        "link": "files/src_congratsWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 6.667,
+          "halstead": {
+            "bugs": 0.181,
+            "difficulty": 8.679,
+            "effort": 4701.904,
+            "length": 104,
+            "time": 261.217,
+            "vocabulary": 37,
+            "volume": 541.783,
+            "operands": {
+              "distinct": 28,
+              "total": 54,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 9,
+              "total": 50,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 2,
+          "sloc": { "logical": 15, "physical": 42 }
+        },
+        "module": "src\\congratsWindow.js",
+        "maintainability": 85.923
+      }
+    },
+    {
+      "info": {
+        "file": "src\\connectingTool.js",
+        "fileShort": "src\\connectingTool.js",
+        "fileSafe": "src_connectingTool_js",
+        "link": "files/src_connectingTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 33.333,
+          "halstead": {
+            "bugs": 0.047,
+            "difficulty": 10.625,
+            "effort": 1506.385,
+            "length": 34,
+            "time": 83.688,
+            "vocabulary": 18,
+            "volume": 141.777,
+            "operands": {
+              "distinct": 8,
+              "total": 17,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 10,
+              "total": 17,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 3, "physical": 21 }
+        },
+        "module": "src\\connectingTool.js",
+        "maintainability": 93.848
+      }
+    },
+    {
+      "info": {
+        "file": "src\\connector.js",
+        "fileShort": "src\\connector.js",
+        "fileSafe": "src_connector_js",
+        "link": "files/src_connector_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 87,
+          "cyclomaticDensity": 78.378,
+          "halstead": {
+            "bugs": 2.776,
+            "difficulty": 109.558,
+            "effort": 912541.837,
+            "length": 1219,
+            "time": 50696.769,
+            "vocabulary": 114,
+            "volume": 8329.293,
+            "operands": {
+              "distinct": 86,
+              "total": 673,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 28,
+              "total": 546,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 8,
+          "sloc": { "logical": 111, "physical": 228 }
+        },
+        "module": "src\\connector.js",
+        "maintainability": 45.458
+      }
+    },
+    {
+      "info": {
+        "file": "src\\copterSprite.js",
+        "fileShort": "src\\copterSprite.js",
+        "fileSafe": "src_copterSprite_js",
+        "link": "files/src_copterSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 15,
+          "cyclomaticDensity": 23.438,
+          "halstead": {
+            "bugs": 1.168,
+            "difficulty": 47.565,
+            "effort": 166621.076,
+            "length": 525,
+            "time": 9256.726,
+            "vocabulary": 102,
+            "volume": 3503.023,
+            "operands": {
+              "distinct": 77,
+              "total": 293,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 25,
+              "total": 232,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 64, "physical": 113 }
+        },
+        "module": "src\\copterSprite.js",
+        "maintainability": 52.924
+      }
+    },
+    {
+      "info": {
+        "file": "src\\debugWindow.js",
+        "fileShort": "src\\debugWindow.js",
+        "fileSafe": "src_debugWindow_js",
+        "link": "files/src_debugWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 3,
+          "cyclomaticDensity": 9.677,
+          "halstead": {
+            "bugs": 0.383,
+            "difficulty": 16.681,
+            "effort": 19143.574,
+            "length": 192,
+            "time": 1063.532,
+            "vocabulary": 63,
+            "volume": 1147.638,
+            "operands": {
+              "distinct": 47,
+              "total": 98,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 16,
+              "total": 94,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 4,
+          "sloc": { "logical": 31, "physical": 70 }
+        },
+        "module": "src\\debugWindow.js",
+        "maintainability": 79.154
+      }
+    },
+    {
+      "info": {
+        "file": "src\\disasterManager.js",
+        "fileShort": "src\\disasterManager.js",
+        "fileSafe": "src_disasterManager_js",
+        "link": "files/src_disasterManager_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 59,
+          "cyclomaticDensity": 35.542,
+          "halstead": {
+            "bugs": 2.965,
+            "difficulty": 93.536,
+            "effort": 832086.734,
+            "length": 1212,
+            "time": 46227.041,
+            "vocabulary": 162,
+            "volume": 8895.898,
+            "operands": {
+              "distinct": 125,
+              "total": 632,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 37,
+              "total": 580,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 12,
+          "sloc": { "logical": 166, "physical": 275 }
+        },
+        "module": "src\\disasterManager.js",
+        "maintainability": 57.659
+      }
+    },
+    {
+      "info": {
+        "file": "src\\disasterWindow.js",
+        "fileShort": "src\\disasterWindow.js",
+        "fileSafe": "src_disasterWindow_js",
+        "link": "files/src_disasterWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 2,
+          "cyclomaticDensity": 5.556,
+          "halstead": {
+            "bugs": 0.565,
+            "difficulty": 13.484,
+            "effort": 22868.806,
+            "length": 274,
+            "time": 1270.489,
+            "vocabulary": 73,
+            "volume": 1696.012,
+            "operands": {
+              "distinct": 62,
+              "total": 152,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 11,
+              "total": 122,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 3,
+          "sloc": { "logical": 36, "physical": 74 }
+        },
+        "module": "src\\disasterWindow.js",
+        "maintainability": 75.735
+      }
+    },
+    {
+      "info": {
+        "file": "src\\emergencyServices.js",
+        "fileShort": "src\\emergencyServices.js",
+        "fileSafe": "src_emergencyServices_js",
+        "link": "files/src_emergencyServices_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 3,
+          "cyclomaticDensity": 15,
+          "halstead": {
+            "bugs": 0.329,
+            "difficulty": 17.091,
+            "effort": 16859.34,
+            "length": 167,
+            "time": 936.63,
+            "vocabulary": 60,
+            "volume": 986.451,
+            "operands": {
+              "distinct": 44,
+              "total": 94,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 16,
+              "total": 73,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 9,
+          "sloc": { "logical": 20, "physical": 47 }
+        },
+        "module": "src\\emergencyServices.js",
+        "maintainability": 69.821
+      }
+    },
+    {
+      "info": {
+        "file": "src\\evaluation.js",
+        "fileShort": "src\\evaluation.js",
+        "fileSafe": "src_evaluation_js",
+        "link": "files/src_evaluation_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 45,
+          "cyclomaticDensity": 21.127,
+          "halstead": {
+            "bugs": 3.965,
+            "difficulty": 69.389,
+            "effort": 825337.733,
+            "length": 1526,
+            "time": 45852.096,
+            "vocabulary": 222,
+            "volume": 11894.279,
+            "operands": {
+              "distinct": 190,
+              "total": 824,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 32,
+              "total": 702,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 20,
+          "sloc": { "logical": 213, "physical": 345 }
+        },
+        "module": "src\\evaluation.js",
+        "maintainability": 60.254
+      }
+    },
+    {
+      "info": {
+        "file": "src\\evaluationWindow.js",
+        "fileShort": "src\\evaluationWindow.js",
+        "fileSafe": "src_evaluationWindow_js",
+        "link": "files/src_evaluationWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 3,
+          "cyclomaticDensity": 9.375,
+          "halstead": {
+            "bugs": 0.538,
+            "difficulty": 20.43,
+            "effort": 32983.091,
+            "length": 260,
+            "time": 1832.394,
+            "vocabulary": 74,
+            "volume": 1614.458,
+            "operands": {
+              "distinct": 57,
+              "total": 137,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 17,
+              "total": 123,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 3,
+          "sloc": { "logical": 32, "physical": 65 }
+        },
+        "module": "src\\evaluationWindow.js",
+        "maintainability": 69.021
+      }
+    },
+    {
+      "info": {
+        "file": "src\\eventEmitter.js",
+        "fileShort": "src\\eventEmitter.js",
+        "fileSafe": "src_eventEmitter_js",
+        "link": "files/src_eventEmitter_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 11,
+          "cyclomaticDensity": 26.19,
+          "halstead": {
+            "bugs": 0.468,
+            "difficulty": 33.239,
+            "effort": 46698.975,
+            "length": 230,
+            "time": 2594.388,
+            "vocabulary": 69,
+            "volume": 1404.961,
+            "operands": {
+              "distinct": 44,
+              "total": 117,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 25,
+              "total": 113,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 10,
+          "sloc": { "logical": 42, "physical": 77 }
+        },
+        "module": "src\\eventEmitter.js",
+        "maintainability": 66.69
+      }
+    },
+    {
+      "info": {
+        "file": "src\\explosionSprite.js",
+        "fileShort": "src\\explosionSprite.js",
+        "fileSafe": "src_explosionSprite_js",
+        "link": "files/src_explosionSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 8,
+          "cyclomaticDensity": 19.512,
+          "halstead": {
+            "bugs": 0.72,
+            "difficulty": 33,
+            "effort": 71299.909,
+            "length": 338,
+            "time": 3961.106,
+            "vocabulary": 84,
+            "volume": 2160.603,
+            "operands": {
+              "distinct": 62,
+              "total": 186,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 22,
+              "total": 152,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 9,
+          "sloc": { "logical": 41, "physical": 84 }
+        },
+        "module": "src\\explosionSprite.js",
+        "maintainability": 59.633
+      }
+    },
+    {
+      "info": {
+        "file": "src\\game.js",
+        "fileShort": "src\\game.js",
+        "fileSafe": "src_game_js",
+        "link": "files/src_game_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 82,
+          "cyclomaticDensity": 19.57,
+          "halstead": {
+            "bugs": 8.947,
+            "difficulty": 69.895,
+            "effort": 1876146.23,
+            "length": 3040,
+            "time": 104230.346,
+            "vocabulary": 455,
+            "volume": 26842.357,
+            "operands": {
+              "distinct": 419,
+              "total": 1627,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 36,
+              "total": 1413,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 21,
+          "sloc": { "logical": 419, "physical": 707 }
+        },
+        "module": "src\\game.js",
+        "maintainability": 58.154
+      }
+    },
+    {
+      "info": {
+        "file": "src\\gameCanvas.js",
+        "fileShort": "src\\gameCanvas.js",
+        "fileSafe": "src_gameCanvas_js",
+        "link": "files/src_gameCanvas_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 118,
+          "cyclomaticDensity": 30.491,
+          "halstead": {
+            "bugs": 8.179,
+            "difficulty": 149.633,
+            "effort": 3671753.449,
+            "length": 3063,
+            "time": 203986.303,
+            "vocabulary": 258,
+            "volume": 24538.389,
+            "operands": {
+              "distinct": 218,
+              "total": 1631,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 40,
+              "total": 1432,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 38,
+          "sloc": { "logical": 387, "physical": 658 }
+        },
+        "module": "src\\gameCanvas.js",
+        "maintainability": 57.342
+      }
+    },
+    {
+      "info": {
+        "file": "src\\gameMap.js",
+        "fileShort": "src\\gameMap.js",
+        "fileSafe": "src_gameMap_js",
+        "link": "files/src_gameMap_js/index.html"
+      },
+      "jshint": { "messages": 1 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 74,
+          "cyclomaticDensity": 29.482,
+          "halstead": {
+            "bugs": 4.413,
+            "difficulty": 129.862,
+            "effort": 1719122.773,
+            "length": 1767,
+            "time": 95506.821,
+            "vocabulary": 180,
+            "volume": 13238.104,
+            "operands": {
+              "distinct": 141,
+              "total": 939,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 39,
+              "total": 828,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 53,
+          "sloc": { "logical": 251, "physical": 395 }
+        },
+        "module": "src\\gameMap.js",
+        "maintainability": 58.434
+      }
+    },
+    {
+      "info": {
+        "file": "src\\gameTools.js",
+        "fileShort": "src\\gameTools.js",
+        "fileSafe": "src_gameTools_js",
+        "link": "files/src_gameTools_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 5,
+          "halstead": {
+            "bugs": 0.497,
+            "difficulty": 15.969,
+            "effort": 23787.694,
+            "length": 237,
+            "time": 1321.539,
+            "vocabulary": 78,
+            "volume": 1489.64,
+            "operands": {
+              "distinct": 64,
+              "total": 146,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 14,
+              "total": 91,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 20, "physical": 48 }
+        },
+        "module": "src\\gameTools.js",
+        "maintainability": 54.064
+      }
+    },
+    {
+      "info": {
+        "file": "src\\industrial.js",
+        "fileShort": "src\\industrial.js",
+        "fileSafe": "src_industrial_js",
+        "link": "files/src_industrial_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 16,
+          "cyclomaticDensity": 28.571,
+          "halstead": {
+            "bugs": 1.212,
+            "difficulty": 55.238,
+            "effort": 200799.059,
+            "length": 533,
+            "time": 11155.503,
+            "vocabulary": 113,
+            "volume": 3635.155,
+            "operands": {
+              "distinct": 84,
+              "total": 320,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 29,
+              "total": 213,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 35,
+          "sloc": { "logical": 56, "physical": 163 }
+        },
+        "module": "src\\industrial.js",
+        "maintainability": 65.358
+      }
+    },
+    {
+      "info": {
+        "file": "src\\infoBar.js",
+        "fileShort": "src\\infoBar.js",
+        "fileSafe": "src_infoBar_js",
+        "link": "files/src_infoBar_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 3.846,
+          "halstead": {
+            "bugs": 0.479,
+            "difficulty": 25.278,
+            "effort": 36333.411,
+            "length": 256,
+            "time": 2018.523,
+            "vocabulary": 49,
+            "volume": 1437.366,
+            "operands": {
+              "distinct": 36,
+              "total": 140,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 13,
+              "total": 116,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 13,
+          "sloc": { "logical": 26, "physical": 56 }
+        },
+        "module": "src\\infoBar.js",
+        "maintainability": 75.062
+      }
+    },
+    {
+      "info": {
+        "file": "src\\inputStatus.js",
+        "fileShort": "src\\inputStatus.js",
+        "fileSafe": "src_inputStatus_js",
+        "link": "files/src_inputStatus_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 42,
+          "cyclomaticDensity": 21.538,
+          "halstead": {
+            "bugs": 3.306,
+            "difficulty": 59.981,
+            "effort": 594941.431,
+            "length": 1317,
+            "time": 33052.302,
+            "vocabulary": 185,
+            "volume": 9918.829,
+            "operands": {
+              "distinct": 158,
+              "total": 702,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 27,
+              "total": 615,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 15,
+          "sloc": { "logical": 195, "physical": 308 }
+        },
+        "module": "src\\inputStatus.js",
+        "maintainability": 61.44
+      }
+    },
+    {
+      "info": {
+        "file": "src\\mapGenerator.js",
+        "fileShort": "src\\mapGenerator.js",
+        "fileSafe": "src_mapGenerator_js",
+        "link": "files/src_mapGenerator_js/index.html"
+      },
+      "jshint": { "messages": 3 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 97,
+          "cyclomaticDensity": 33.219,
+          "halstead": {
+            "bugs": 5.109,
+            "difficulty": 152.514,
+            "effort": 2337591.377,
+            "length": 2033,
+            "time": 129866.188,
+            "vocabulary": 186,
+            "volume": 15327.11,
+            "operands": {
+              "distinct": 148,
+              "total": 1188,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 38,
+              "total": 845,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 42,
+          "sloc": { "logical": 292, "physical": 507 }
+        },
+        "module": "src\\mapGenerator.js",
+        "maintainability": 58.488
+      }
+    },
+    {
+      "info": {
+        "file": "src\\mapScanner.js",
+        "fileShort": "src\\mapScanner.js",
+        "fileSafe": "src_mapScanner_js",
+        "link": "files/src_mapScanner_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 30,
+          "halstead": {
+            "bugs": 0.538,
+            "difficulty": 34.5,
+            "effort": 55657.609,
+            "length": 259,
+            "time": 3092.089,
+            "vocabulary": 75,
+            "volume": 1613.264,
+            "operands": {
+              "distinct": 50,
+              "total": 138,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 25,
+              "total": 121,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 40, "physical": 71 }
+        },
+        "module": "src\\mapScanner.js",
+        "maintainability": 62.165
+      }
+    },
+    {
+      "info": {
+        "file": "src\\micropolis.js",
+        "fileShort": "src\\micropolis.js",
+        "fileSafe": "src_micropolis_js",
+        "link": "files/src_micropolis_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 2,
+          "cyclomaticDensity": 5.405,
+          "halstead": {
+            "bugs": 0.525,
+            "difficulty": 15.851,
+            "effort": 24968.71,
+            "length": 257,
+            "time": 1387.151,
+            "vocabulary": 70,
+            "volume": 1575.226,
+            "operands": {
+              "distinct": 57,
+              "total": 139,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 13,
+              "total": 118,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 37, "physical": 91 }
+        },
+        "module": "src\\micropolis.js",
+        "maintainability": 79.543
+      }
+    },
+    {
+      "info": {
+        "file": "src\\miscTiles.js",
+        "fileShort": "src\\miscTiles.js",
+        "fileSafe": "src_miscTiles_js",
+        "link": "files/src_miscTiles_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 13,
+          "cyclomaticDensity": 30.952,
+          "halstead": {
+            "bugs": 0.665,
+            "difficulty": 33.682,
+            "effort": 67235.981,
+            "length": 306,
+            "time": 3735.332,
+            "vocabulary": 92,
+            "volume": 1996.21,
+            "operands": {
+              "distinct": 66,
+              "total": 171,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 26,
+              "total": 135,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 14,
+          "sloc": { "logical": 42, "physical": 86 }
+        },
+        "module": "src\\miscTiles.js",
+        "maintainability": 62.298
+      }
+    },
+    {
+      "info": {
+        "file": "src\\miscUtils.js",
+        "fileShort": "src\\miscUtils.js",
+        "fileSafe": "src_miscUtils_js",
+        "link": "files/src_miscUtils_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 4,
+          "cyclomaticDensity": 19.048,
+          "halstead": {
+            "bugs": 0.157,
+            "difficulty": 19.125,
+            "effort": 9024.973,
+            "length": 92,
+            "time": 501.387,
+            "vocabulary": 35,
+            "volume": 471.894,
+            "operands": {
+              "distinct": 20,
+              "total": 51,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 15,
+              "total": 41,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 21, "physical": 44 }
+        },
+        "module": "src\\miscUtils.js",
+        "maintainability": 79.376
+      }
+    },
+    {
+      "info": {
+        "file": "src\\modalWindow.js",
+        "fileShort": "src\\modalWindow.js",
+        "fileSafe": "src_modalWindow_js",
+        "link": "files/src_modalWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 7,
+          "cyclomaticDensity": 31.818,
+          "halstead": {
+            "bugs": 0.313,
+            "difficulty": 26.7,
+            "effort": 25051.908,
+            "length": 168,
+            "time": 1391.773,
+            "vocabulary": 48,
+            "volume": 938.274,
+            "operands": {
+              "distinct": 30,
+              "total": 89,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 18,
+              "total": 79,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 4,
+          "sloc": { "logical": 22, "physical": 48 }
+        },
+        "module": "src\\modalWindow.js",
+        "maintainability": 65.419
+      }
+    },
+    {
+      "info": {
+        "file": "src\\monsterSprite.js",
+        "fileShort": "src\\monsterSprite.js",
+        "fileSafe": "src_monsterSprite_js",
+        "link": "files/src_monsterSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 32,
+          "cyclomaticDensity": 29.907,
+          "halstead": {
+            "bugs": 1.89,
+            "difficulty": 64.068,
+            "effort": 363353.487,
+            "length": 791,
+            "time": 20186.305,
+            "vocabulary": 144,
+            "volume": 5671.411,
+            "operands": {
+              "distinct": 111,
+              "total": 431,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 33,
+              "total": 360,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 107, "physical": 178 }
+        },
+        "module": "src\\monsterSprite.js",
+        "maintainability": 40.55
+      }
+    },
+    {
+      "info": {
+        "file": "src\\monsterTV.js",
+        "fileShort": "src\\monsterTV.js",
+        "fileSafe": "src_monsterTV_js",
+        "link": "files/src_monsterTV_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 18.462,
+          "halstead": {
+            "bugs": 1.011,
+            "difficulty": 35.194,
+            "effort": 106695.696,
+            "length": 473,
+            "time": 5927.539,
+            "vocabulary": 85,
+            "volume": 3031.642,
+            "operands": {
+              "distinct": 67,
+              "total": 262,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 18,
+              "total": 211,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 15,
+          "sloc": { "logical": 65, "physical": 124 }
+        },
+        "module": "src\\monsterTV.js",
+        "maintainability": 69.175
+      }
+    },
+    {
+      "info": {
+        "file": "src\\mouseBox.js",
+        "fileShort": "src\\mouseBox.js",
+        "fileSafe": "src_mouseBox_js",
+        "link": "files/src_mouseBox_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 6,
+          "cyclomaticDensity": 33.333,
+          "halstead": {
+            "bugs": 0.242,
+            "difficulty": 21,
+            "effort": 15246.948,
+            "length": 130,
+            "time": 847.053,
+            "vocabulary": 48,
+            "volume": 726.045,
+            "operands": {
+              "distinct": 30,
+              "total": 70,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 18,
+              "total": 60,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 5,
+          "sloc": { "logical": 18, "physical": 36 }
+        },
+        "module": "src\\mouseBox.js",
+        "maintainability": 54.945
+      }
+    },
+    {
+      "info": {
+        "file": "src\\nagWindow.js",
+        "fileShort": "src\\nagWindow.js",
+        "fileSafe": "src_nagWindow_js",
+        "link": "files/src_nagWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 7.692,
+          "halstead": {
+            "bugs": 0.155,
+            "difficulty": 8.813,
+            "effort": 4089.743,
+            "length": 92,
+            "time": 227.208,
+            "vocabulary": 33,
+            "volume": 464.084,
+            "operands": {
+              "distinct": 24,
+              "total": 47,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 9,
+              "total": 45,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 13, "physical": 40 }
+        },
+        "module": "src\\nagWindow.js",
+        "maintainability": 87.826
+      }
+    },
+    {
+      "info": {
+        "file": "src\\notification.js",
+        "fileShort": "src\\notification.js",
+        "fileSafe": "src_notification_js",
+        "link": "files/src_notification_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 14,
+          "cyclomaticDensity": 19.718,
+          "halstead": {
+            "bugs": 1.114,
+            "difficulty": 42.492,
+            "effort": 141965.276,
+            "length": 530,
+            "time": 7886.96,
+            "vocabulary": 79,
+            "volume": 3341.004,
+            "operands": {
+              "distinct": 61,
+              "total": 288,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 18,
+              "total": 242,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 15,
+          "sloc": { "logical": 71, "physical": 128 }
+        },
+        "module": "src\\notification.js",
+        "maintainability": 69.697
+      }
+    },
+    {
+      "info": {
+        "file": "src\\parkTool.js",
+        "fileShort": "src\\parkTool.js",
+        "fileSafe": "src_parkTool_js",
+        "link": "files/src_parkTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 3,
+          "cyclomaticDensity": 16.667,
+          "halstead": {
+            "bugs": 0.299,
+            "difficulty": 18.487,
+            "effort": 16606.675,
+            "length": 154,
+            "time": 922.593,
+            "vocabulary": 57,
+            "volume": 898.265,
+            "operands": {
+              "distinct": 40,
+              "total": 87,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 17,
+              "total": 67,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 4,
+          "sloc": { "logical": 18, "physical": 45 }
+        },
+        "module": "src\\parkTool.js",
+        "maintainability": 65.449
+      }
+    },
+    {
+      "info": {
+        "file": "src\\powerManager.js",
+        "fileShort": "src\\powerManager.js",
+        "fileSafe": "src_powerManager_js",
+        "link": "files/src_powerManager_js/index.html"
+      },
+      "jshint": { "messages": 1 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 18,
+          "cyclomaticDensity": 24.324,
+          "halstead": {
+            "bugs": 1.407,
+            "difficulty": 49.778,
+            "effort": 210127.079,
+            "length": 605,
+            "time": 11673.727,
+            "vocabulary": 126,
+            "volume": 4221.254,
+            "operands": {
+              "distinct": 97,
+              "total": 333,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 29,
+              "total": 272,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 17,
+          "sloc": { "logical": 74, "physical": 156 }
+        },
+        "module": "src\\powerManager.js",
+        "maintainability": 66.226
+      }
+    },
+    {
+      "info": {
+        "file": "src\\queryTool.js",
+        "fileShort": "src\\queryTool.js",
+        "fileSafe": "src_queryTool_js",
+        "link": "files/src_queryTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 28,
+          "cyclomaticDensity": 31.111,
+          "halstead": {
+            "bugs": 2.168,
+            "difficulty": 48.595,
+            "effort": 316073.065,
+            "length": 871,
+            "time": 17559.615,
+            "vocabulary": 177,
+            "volume": 6504.284,
+            "operands": {
+              "distinct": 148,
+              "total": 496,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 29,
+              "total": 375,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 24,
+          "sloc": { "logical": 90, "physical": 148 }
+        },
+        "module": "src\\queryTool.js",
+        "maintainability": 62.238
+      }
+    },
+    {
+      "info": {
+        "file": "src\\queryWindow.js",
+        "fileShort": "src\\queryWindow.js",
+        "fileSafe": "src_queryWindow_js",
+        "link": "files/src_queryWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 4,
+          "cyclomaticDensity": 23.529,
+          "halstead": {
+            "bugs": 0.251,
+            "difficulty": 12.458,
+            "effort": 9373.29,
+            "length": 134,
+            "time": 520.738,
+            "vocabulary": 49,
+            "volume": 752.371,
+            "operands": {
+              "distinct": 36,
+              "total": 69,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 13,
+              "total": 65,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 17, "physical": 48 }
+        },
+        "module": "src\\queryWindow.js",
+        "maintainability": 79.525
+      }
+    },
+    {
+      "info": {
+        "file": "src\\railTool.js",
+        "fileShort": "src\\railTool.js",
+        "fileSafe": "src_railTool_js",
+        "link": "files/src_railTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 29,
+          "cyclomaticDensity": 49.153,
+          "halstead": {
+            "bugs": 1.074,
+            "difficulty": 66.316,
+            "effort": 213651.435,
+            "length": 504,
+            "time": 11869.524,
+            "vocabulary": 84,
+            "volume": 3221.728,
+            "operands": {
+              "distinct": 57,
+              "total": 280,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 27,
+              "total": 224,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 6,
+          "sloc": { "logical": 59, "physical": 110 }
+        },
+        "module": "src\\railTool.js",
+        "maintainability": 50.389
+      }
+    },
+    {
+      "info": {
+        "file": "src\\rci.js",
+        "fileShort": "src\\rci.js",
+        "fileSafe": "src_rci_js",
+        "link": "files/src_rci_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 13,
+          "cyclomaticDensity": 18.31,
+          "halstead": {
+            "bugs": 1.523,
+            "difficulty": 45.313,
+            "effort": 207046.989,
+            "length": 640,
+            "time": 11502.611,
+            "vocabulary": 141,
+            "volume": 4569.313,
+            "operands": {
+              "distinct": 112,
+              "total": 350,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 29,
+              "total": 290,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 11,
+          "sloc": { "logical": 71, "physical": 135 }
+        },
+        "module": "src\\rci.js",
+        "maintainability": 59.591
+      }
+    },
+    {
+      "info": {
+        "file": "src\\repairManager.js",
+        "fileShort": "src\\repairManager.js",
+        "fileSafe": "src_repairManager_js",
+        "link": "files/src_repairManager_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 13,
+          "cyclomaticDensity": 32.5,
+          "halstead": {
+            "bugs": 0.633,
+            "difficulty": 50,
+            "effort": 94909.574,
+            "length": 302,
+            "time": 5272.754,
+            "vocabulary": 78,
+            "volume": 1898.191,
+            "operands": {
+              "distinct": 48,
+              "total": 160,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 30,
+              "total": 142,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 11,
+          "sloc": { "logical": 40, "physical": 69 }
+        },
+        "module": "src\\repairManager.js",
+        "maintainability": 64.737
+      }
+    },
+    {
+      "info": {
+        "file": "src\\residential.js",
+        "fileShort": "src\\residential.js",
+        "fileSafe": "src_residential_js",
+        "link": "files/src_residential_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 57,
+          "cyclomaticDensity": 36.076,
+          "halstead": {
+            "bugs": 3.165,
+            "difficulty": 103.572,
+            "effort": 983449.857,
+            "length": 1283,
+            "time": 54636.103,
+            "vocabulary": 169,
+            "volume": 9495.328,
+            "operands": {
+              "distinct": 132,
+              "total": 739,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 37,
+              "total": 544,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 54,
+          "sloc": { "logical": 158, "physical": 319 }
+        },
+        "module": "src\\residential.js",
+        "maintainability": 57.522
+      }
+    },
+    {
+      "info": {
+        "file": "src\\road.js",
+        "fileShort": "src\\road.js",
+        "fileSafe": "src_road_js",
+        "link": "files/src_road_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 34,
+          "cyclomaticDensity": 38.202,
+          "halstead": {
+            "bugs": 1.93,
+            "difficulty": 78.514,
+            "effort": 454611.544,
+            "length": 811,
+            "time": 25256.197,
+            "vocabulary": 141,
+            "volume": 5790.176,
+            "operands": {
+              "distinct": 105,
+              "total": 458,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 36,
+              "total": 353,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 25,
+          "sloc": { "logical": 89, "physical": 187 }
+        },
+        "module": "src\\road.js",
+        "maintainability": 55.246
+      }
+    },
+    {
+      "info": {
+        "file": "src\\roadTool.js",
+        "fileShort": "src\\roadTool.js",
+        "fileSafe": "src_roadTool_js",
+        "link": "files/src_roadTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 29,
+          "cyclomaticDensity": 50,
+          "halstead": {
+            "bugs": 1.062,
+            "difficulty": 64.241,
+            "effort": 204638.813,
+            "length": 497,
+            "time": 11368.823,
+            "vocabulary": 85,
+            "volume": 3185.467,
+            "operands": {
+              "distinct": 58,
+              "total": 276,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 27,
+              "total": 221,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 6,
+          "sloc": { "logical": 58, "physical": 112 }
+        },
+        "module": "src\\roadTool.js",
+        "maintainability": 50.667
+      }
+    },
+    {
+      "info": {
+        "file": "src\\saveWindow.js",
+        "fileShort": "src\\saveWindow.js",
+        "fileSafe": "src_saveWindow_js",
+        "link": "files/src_saveWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 7.692,
+          "halstead": {
+            "bugs": 0.155,
+            "difficulty": 8.813,
+            "effort": 4089.743,
+            "length": 92,
+            "time": 227.208,
+            "vocabulary": 33,
+            "volume": 464.084,
+            "operands": {
+              "distinct": 24,
+              "total": 47,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 9,
+              "total": 45,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 13, "physical": 40 }
+        },
+        "module": "src\\saveWindow.js",
+        "maintainability": 87.826
+      }
+    },
+    {
+      "info": {
+        "file": "src\\screenshotLinkWindow.js",
+        "fileShort": "src\\screenshotLinkWindow.js",
+        "fileSafe": "src_screenshotLinkWindow_js",
+        "link": "files/src_screenshotLinkWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 5.882,
+          "halstead": {
+            "bugs": 0.211,
+            "difficulty": 9,
+            "effort": 5699.785,
+            "length": 119,
+            "time": 316.655,
+            "vocabulary": 40,
+            "volume": 633.309,
+            "operands": {
+              "distinct": 31,
+              "total": 62,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 9,
+              "total": 57,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 3,
+          "sloc": { "logical": 17, "physical": 48 }
+        },
+        "module": "src\\screenshotLinkWindow.js",
+        "maintainability": 87.351
+      }
+    },
+    {
+      "info": {
+        "file": "src\\screenshotWindow.js",
+        "fileShort": "src\\screenshotWindow.js",
+        "fileSafe": "src_screenshotWindow_js",
+        "link": "files/src_screenshotWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 3,
+          "cyclomaticDensity": 9.375,
+          "halstead": {
+            "bugs": 0.385,
+            "difficulty": 16.596,
+            "effort": 19169.978,
+            "length": 194,
+            "time": 1064.999,
+            "vocabulary": 62,
+            "volume": 1155.114,
+            "operands": {
+              "distinct": 47,
+              "total": 104,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 15,
+              "total": 90,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 5,
+          "sloc": { "logical": 32, "physical": 74 }
+        },
+        "module": "src\\screenshotWindow.js",
+        "maintainability": 79.551
+      }
+    },
+    {
+      "info": {
+        "file": "src\\settingsWindow.js",
+        "fileShort": "src\\settingsWindow.js",
+        "fileSafe": "src_settingsWindow_js",
+        "link": "files/src_settingsWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 10,
+          "cyclomaticDensity": 11.765,
+          "halstead": {
+            "bugs": 1.002,
+            "difficulty": 23.865,
+            "effort": 71755.266,
+            "length": 446,
+            "time": 3986.404,
+            "vocabulary": 107,
+            "volume": 3006.694,
+            "operands": {
+              "distinct": 89,
+              "total": 236,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 18,
+              "total": 210,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 5,
+          "sloc": { "logical": 85, "physical": 124 }
+        },
+        "module": "src\\settingsWindow.js",
+        "maintainability": 63.971
+      }
+    },
+    {
+      "info": {
+        "file": "src\\simulation.js",
+        "fileShort": "src\\simulation.js",
+        "fileSafe": "src_simulation_js",
+        "link": "files/src_simulation_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 117,
+          "cyclomaticDensity": 27.146,
+          "halstead": {
+            "bugs": 8.987,
+            "difficulty": 99.759,
+            "effort": 2689492.646,
+            "length": 3139,
+            "time": 149416.258,
+            "vocabulary": 385,
+            "volume": 26959.975,
+            "operands": {
+              "distinct": 344,
+              "total": 1674,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 41,
+              "total": 1465,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 15,
+          "sloc": { "logical": 431, "physical": 643 }
+        },
+        "module": "src\\simulation.js",
+        "maintainability": 52.803
+      }
+    },
+    {
+      "info": {
+        "file": "src\\splashCanvas.js",
+        "fileShort": "src\\splashCanvas.js",
+        "fileSafe": "src_splashCanvas_js",
+        "link": "files/src_splashCanvas_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 25.532,
+          "halstead": {
+            "bugs": 0.681,
+            "difficulty": 36.066,
+            "effort": 73701.882,
+            "length": 318,
+            "time": 4094.549,
+            "vocabulary": 86,
+            "volume": 2043.552,
+            "operands": {
+              "distinct": 61,
+              "total": 176,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 25,
+              "total": 142,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 8,
+          "sloc": { "logical": 47, "physical": 100 }
+        },
+        "module": "src\\splashCanvas.js",
+        "maintainability": 57.045
+      }
+    },
+    {
+      "info": {
+        "file": "src\\splashScreen.js",
+        "fileShort": "src\\splashScreen.js",
+        "fileSafe": "src_splashScreen_js",
+        "link": "files/src_splashScreen_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 5,
+          "cyclomaticDensity": 8.929,
+          "halstead": {
+            "bugs": 0.954,
+            "difficulty": 28.852,
+            "effort": 82561.134,
+            "length": 443,
+            "time": 4586.73,
+            "vocabulary": 88,
+            "volume": 2861.528,
+            "operands": {
+              "distinct": 71,
+              "total": 241,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 17,
+              "total": 202,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 12,
+          "sloc": { "logical": 56, "physical": 146 }
+        },
+        "module": "src\\splashScreen.js",
+        "maintainability": 66.706
+      }
+    },
+    {
+      "info": {
+        "file": "src\\spriteManager.js",
+        "fileShort": "src\\spriteManager.js",
+        "fileSafe": "src_spriteManager_js",
+        "link": "files/src_spriteManager_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 40,
+          "cyclomaticDensity": 25.157,
+          "halstead": {
+            "bugs": 3.521,
+            "difficulty": 75,
+            "effort": 792177.112,
+            "length": 1401,
+            "time": 44009.84,
+            "vocabulary": 186,
+            "volume": 10562.361,
+            "operands": {
+              "distinct": 155,
+              "total": 750,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 31,
+              "total": 651,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 31,
+          "sloc": { "logical": 159, "physical": 285 }
+        },
+        "module": "src\\spriteManager.js",
+        "maintainability": 66.008
+      }
+    },
+    {
+      "info": {
+        "file": "src\\spriteUtils.js",
+        "fileShort": "src\\spriteUtils.js",
+        "fileSafe": "src_spriteUtils_js",
+        "link": "files/src_spriteUtils_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 34,
+          "cyclomaticDensity": 35.417,
+          "halstead": {
+            "bugs": 1.31,
+            "difficulty": 58.414,
+            "effort": 229567.419,
+            "length": 569,
+            "time": 12753.745,
+            "vocabulary": 120,
+            "volume": 3930.021,
+            "operands": {
+              "distinct": 87,
+              "total": 308,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 33,
+              "total": 261,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 27,
+          "sloc": { "logical": 96, "physical": 180 }
+        },
+        "module": "src\\spriteUtils.js",
+        "maintainability": 64.448
+      }
+    },
+    {
+      "info": {
+        "file": "src\\stadia.js",
+        "fileShort": "src\\stadia.js",
+        "fileSafe": "src_stadia_js",
+        "link": "files/src_stadia_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 5,
+          "cyclomaticDensity": 25,
+          "halstead": {
+            "bugs": 0.354,
+            "difficulty": 25.368,
+            "effort": 26919.644,
+            "length": 189,
+            "time": 1495.536,
+            "vocabulary": 49,
+            "volume": 1061.18,
+            "operands": {
+              "distinct": 34,
+              "total": 115,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 15,
+              "total": 74,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 10,
+          "sloc": { "logical": 20, "physical": 49 }
+        },
+        "module": "src\\stadia.js",
+        "maintainability": 69.307
+      }
+    },
+    {
+      "info": {
+        "file": "src\\storage.js",
+        "fileShort": "src\\storage.js",
+        "fileSafe": "src_storage_js",
+        "link": "files/src_storage_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 5,
+          "cyclomaticDensity": 16.129,
+          "halstead": {
+            "bugs": 0.433,
+            "difficulty": 25.435,
+            "effort": 33053.638,
+            "length": 215,
+            "time": 1836.313,
+            "vocabulary": 66,
+            "volume": 1299.545,
+            "operands": {
+              "distinct": 46,
+              "total": 117,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 20,
+              "total": 98,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 2,
+          "sloc": { "logical": 31, "physical": 72 }
+        },
+        "module": "src\\storage.js",
+        "maintainability": 66.492
+      }
+    },
+    {
+      "info": {
+        "file": "src\\text.js",
+        "fileShort": "src\\text.js",
+        "fileSafe": "src_text_js",
+        "link": "files/src_text_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 0.787,
+          "halstead": {
+            "bugs": 2.2,
+            "difficulty": 15.644,
+            "effort": 103247.981,
+            "length": 861,
+            "time": 5735.999,
+            "vocabulary": 203,
+            "volume": 6599.854,
+            "operands": {
+              "distinct": 191,
+              "total": 498,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 12,
+              "total": 363,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 0,
+          "sloc": { "logical": 127, "physical": 167 }
+        },
+        "module": "src\\text.js",
+        "maintainability": 31.018
+      }
+    },
+    {
+      "info": {
+        "file": "src\\tileHistory.js",
+        "fileShort": "src\\tileHistory.js",
+        "fileSafe": "src_tileHistory_js",
+        "link": "files/src_tileHistory_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 7.692,
+          "halstead": {
+            "bugs": 0.131,
+            "difficulty": 14.1,
+            "effort": 5559.726,
+            "length": 86,
+            "time": 308.874,
+            "vocabulary": 24,
+            "volume": 394.307,
+            "operands": {
+              "distinct": 15,
+              "total": 47,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 9,
+              "total": 39,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 13, "physical": 37 }
+        },
+        "module": "src\\tileHistory.js",
+        "maintainability": 86.358
+      }
+    },
+    {
+      "info": {
+        "file": "src\\tileSet.js",
+        "fileShort": "src\\tileSet.js",
+        "fileSafe": "src_tileSet_js",
+        "link": "files/src_tileSet_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 26.667,
+          "halstead": {
+            "bugs": 0.592,
+            "difficulty": 41.731,
+            "effort": 74133.117,
+            "length": 281,
+            "time": 4118.507,
+            "vocabulary": 80,
+            "volume": 1776.462,
+            "operands": {
+              "distinct": 52,
+              "total": 155,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 28,
+              "total": 126,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 6,
+          "sloc": { "logical": 45, "physical": 94 }
+        },
+        "module": "src\\tileSet.js",
+        "maintainability": 57.389
+      }
+    },
+    {
+      "info": {
+        "file": "src\\tileUtils.js",
+        "fileShort": "src\\tileUtils.js",
+        "fileSafe": "src_tileUtils_js",
+        "link": "files/src_tileUtils_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 23,
+          "cyclomaticDensity": 42.593,
+          "halstead": {
+            "bugs": 0.996,
+            "difficulty": 45.871,
+            "effort": 137072.227,
+            "length": 465,
+            "time": 7615.124,
+            "vocabulary": 86,
+            "volume": 2988.213,
+            "operands": {
+              "distinct": 62,
+              "total": 237,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 24,
+              "total": 228,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 16,
+          "sloc": { "logical": 54, "physical": 127 }
+        },
+        "module": "src\\tileUtils.js",
+        "maintainability": 87.638
+      }
+    },
+    {
+      "info": {
+        "file": "src\\tornadoSprite.js",
+        "fileShort": "src\\tornadoSprite.js",
+        "fileSafe": "src_tornadoSprite_js",
+        "link": "files/src_tornadoSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 16,
+          "cyclomaticDensity": 32,
+          "halstead": {
+            "bugs": 0.832,
+            "difficulty": 36.171,
+            "effort": 90330.849,
+            "length": 381,
+            "time": 5018.38,
+            "vocabulary": 94,
+            "volume": 2497.298,
+            "operands": {
+              "distinct": 70,
+              "total": 211,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 24,
+              "total": 170,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 50, "physical": 98 }
+        },
+        "module": "src\\tornadoSprite.js",
+        "maintainability": 51.492
+      }
+    },
+    {
+      "info": {
+        "file": "src\\touchWarnWindow.js",
+        "fileShort": "src\\touchWarnWindow.js",
+        "fileSafe": "src_touchWarnWindow_js",
+        "link": "files/src_touchWarnWindow_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 1,
+          "cyclomaticDensity": 7.692,
+          "halstead": {
+            "bugs": 0.155,
+            "difficulty": 8.813,
+            "effort": 4089.743,
+            "length": 92,
+            "time": 227.208,
+            "vocabulary": 33,
+            "volume": 464.084,
+            "operands": {
+              "distinct": 24,
+              "total": 47,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 9,
+              "total": 45,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 1,
+          "sloc": { "logical": 13, "physical": 40 }
+        },
+        "module": "src\\touchWarnWindow.js",
+        "maintainability": 87.826
+      }
+    },
+    {
+      "info": {
+        "file": "src\\traffic.js",
+        "fileShort": "src\\traffic.js",
+        "fileSafe": "src_traffic_js",
+        "link": "files/src_traffic_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 30,
+          "cyclomaticDensity": 31.25,
+          "halstead": {
+            "bugs": 1.708,
+            "difficulty": 70.713,
+            "effort": 362332.213,
+            "length": 732,
+            "time": 20129.567,
+            "vocabulary": 128,
+            "volume": 5124,
+            "operands": {
+              "distinct": 94,
+              "total": 391,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 34,
+              "total": 341,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 15,
+          "sloc": { "logical": 96, "physical": 186 }
+        },
+        "module": "src\\traffic.js",
+        "maintainability": 60.855
+      }
+    },
+    {
+      "info": {
+        "file": "src\\trainSprite.js",
+        "fileShort": "src\\trainSprite.js",
+        "fileSafe": "src_trainSprite_js",
+        "link": "files/src_trainSprite_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 17,
+          "cyclomaticDensity": 26.154,
+          "halstead": {
+            "bugs": 1.087,
+            "difficulty": 49.367,
+            "effort": 161048.518,
+            "length": 482,
+            "time": 8947.14,
+            "vocabulary": 109,
+            "volume": 3262.265,
+            "operands": {
+              "distinct": 79,
+              "total": 260,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 30,
+              "total": 222,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 7,
+          "sloc": { "logical": 65, "physical": 132 }
+        },
+        "module": "src\\trainSprite.js",
+        "maintainability": 55.722
+      }
+    },
+    {
+      "info": {
+        "file": "src\\transport.js",
+        "fileShort": "src\\transport.js",
+        "fileSafe": "src_transport_js",
+        "link": "files/src_transport_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 30.769,
+          "halstead": {
+            "bugs": 0.778,
+            "difficulty": 31.908,
+            "effort": 74456.252,
+            "length": 356,
+            "time": 4136.458,
+            "vocabulary": 94,
+            "volume": 2333.434,
+            "operands": {
+              "distinct": 71,
+              "total": 197,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 23,
+              "total": 159,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 14,
+          "sloc": { "logical": 39, "physical": 85 }
+        },
+        "module": "src\\transport.js",
+        "maintainability": 63.128
+      }
+    },
+    {
+      "info": {
+        "file": "src\\valves.js",
+        "fileShort": "src\\valves.js",
+        "fileSafe": "src_valves_js",
+        "link": "files/src_valves_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 12,
+          "cyclomaticDensity": 13.953,
+          "halstead": {
+            "bugs": 1.427,
+            "difficulty": 32.959,
+            "effort": 141073.125,
+            "length": 623,
+            "time": 7837.396,
+            "vocabulary": 117,
+            "volume": 4280.237,
+            "operands": {
+              "distinct": 98,
+              "total": 340,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 19,
+              "total": 283,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 5,
+          "sloc": { "logical": 86, "physical": 142 }
+        },
+        "module": "src\\valves.js",
+        "maintainability": 52.419
+      }
+    },
+    {
+      "info": {
+        "file": "src\\wireTool.js",
+        "fileShort": "src\\wireTool.js",
+        "fileSafe": "src_wireTool_js",
+        "link": "files/src_wireTool_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 29,
+          "cyclomaticDensity": 43.284,
+          "halstead": {
+            "bugs": 1.146,
+            "difficulty": 59,
+            "effort": 202904.94,
+            "length": 538,
+            "time": 11272.497,
+            "vocabulary": 84,
+            "volume": 3439.067,
+            "operands": {
+              "distinct": 60,
+              "total": 295,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 24,
+              "total": 243,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 6,
+          "sloc": { "logical": 67, "physical": 118 }
+        },
+        "module": "src\\wireTool.js",
+        "maintainability": 49.312
+      }
+    },
+    {
+      "info": {
+        "file": "src\\worldEffects.js",
+        "fileShort": "src\\worldEffects.js",
+        "fileSafe": "src_worldEffects_js",
+        "link": "files/src_worldEffects_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 9,
+          "cyclomaticDensity": 21.429,
+          "halstead": {
+            "bugs": 0.609,
+            "difficulty": 45.644,
+            "effort": 83368.432,
+            "length": 297,
+            "time": 4631.58,
+            "vocabulary": 71,
+            "volume": 1826.475,
+            "operands": {
+              "distinct": 45,
+              "total": 158,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 26,
+              "total": 139,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 12,
+          "sloc": { "logical": 42, "physical": 74 }
+        },
+        "module": "src\\worldEffects.js",
+        "maintainability": 73.287
+      }
+    },
+    {
+      "info": {
+        "file": "src\\zoneUtils.js",
+        "fileShort": "src\\zoneUtils.js",
+        "fileSafe": "src_zoneUtils_js",
+        "link": "files/src_zoneUtils_js/index.html"
+      },
+      "jshint": { "messages": 0 },
+      "complexity": {
+        "methodAggregate": {
+          "cyclomatic": 63,
+          "cyclomaticDensity": 30.288,
+          "halstead": {
+            "bugs": 2.232,
+            "difficulty": 96.122,
+            "effort": 643524.729,
+            "length": 971,
+            "time": 35751.374,
+            "vocabulary": 119,
+            "volume": 6694.868,
+            "operands": {
+              "distinct": 86,
+              "total": 501,
+              "identifiers": ["__stripped__"]
+            },
+            "operators": {
+              "distinct": 33,
+              "total": 470,
+              "identifiers": ["__stripped__"]
+            }
+          },
+          "params": 18,
+          "sloc": { "logical": 208, "physical": 222 }
+        },
+        "module": "src\\zoneUtils.js",
+        "maintainability": 46.241
+      }
+    }
+  ]
+}

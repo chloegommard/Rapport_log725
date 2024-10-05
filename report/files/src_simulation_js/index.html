@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plato - src\simulation.js</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="../../assets/css/vendor/morris.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet" />
+    <link href="../../assets/css/plato.css" rel="stylesheet" />
+    <link href="../../assets/css/plato-file.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="http://github.com/es-analysis/plato"
+          >Plato on Github</a
+        >
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="../../index.html">Report Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>src\simulation.js</h1>
+      </div>
+    </div>
+
+    <div class="container aggregate-stats">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Maintainability
+            <a
+              href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability."
+                data-original-title="Maintainability Index"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">52.80</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Lines of code
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h2>
+          <p class="stat">643</p>
+        </div>
+      </div>
+      <div class="row historical">
+        <div class="col-md-6">
+          <p id="chart_historical_maint" class="chart"></p>
+        </div>
+        <div class="col-md-6">
+          <p id="chart_historical_sloc" class="chart"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Difficulty
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="The difficulty measure is related to the difficulty of the program to write or understand."
+                data-original-title="Difficulty"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">99.76</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Estimated Errors
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation."
+                data-original-title="Delivered Bugs"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">8.99</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container charts">
+      <div class="row">
+        <h2 class="header">Function weight</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By Complexity
+            <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="This metric counts the number of distinct paths through a block of code. Lower values are better."
+                data-original-title="Cyclomatic Complexity"
+                data-container="body"
+              ></i
+            ></a>
+          </h3>
+          <div id="fn-by-complexity" class="stat"></div>
+        </div>
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By SLOC
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h3>
+          <div id="fn-by-sloc" class="stat"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <textarea id="file-source" class="col-md-12">
+/* micropolisJS. Adapted by Graeme McCutcheon from Micropolis.
+ *
+ * This code is released under the GNU GPL v3, with some additional terms.
+ * Please see the files LICENSE and COPYING for details. Alternatively,
+ * consult http://micropolisjs.graememcc.co.uk/LICENSE and
+ * http://micropolisjs.graememcc.co.uk/COPYING
+ *
+ */
+
+import { BlockMap } from &#039;./blockMap&#039;;
+import { BlockMapUtils } from &#039;./blockMapUtils&#039;;
+import { Budget } from &#039;./budget&#039;;
+import { Census } from &#039;./census&#039;;
+import { Commercial } from &#039;./commercial&#039;;
+import { DisasterManager } from &#039;./disasterManager&#039;;
+import { EventEmitter } from &#039;./eventEmitter&#039;;
+import { EmergencyServices } from &#039;./emergencyServices&#039;;
+import { Evaluation } from &#039;./evaluation&#039;;
+import { Industrial } from &#039;./industrial&#039;;
+import { MapScanner } from &#039;./mapScanner&#039;;
+import * as Messages from &#039;./messages&#039;;
+import { MiscTiles } from &#039;./miscTiles&#039;;
+import { MiscUtils } from &#039;./miscUtils&#039;;
+import { PowerManager } from &#039;./powerManager&#039;;
+import { RepairManager } from &#039;./repairManager&#039;;
+import { Residential } from &#039;./residential&#039;;
+import { Road } from &#039;./road&#039;;
+import { SpriteManager } from &#039;./spriteManager&#039;;
+import { Stadia } from &#039;./stadia&#039;;
+import { Traffic } from &#039;./traffic&#039;;
+import { Transport } from &#039;./transport&#039;;
+import { Valves } from &#039;./valves&#039;;
+
+var Simulation = EventEmitter(function (gameMap, gameLevel, speed, savedGame) {
+  this._map = gameMap;
+  this.setLevel(gameLevel);
+  this.setSpeed(speed);
+
+  this._phaseCycle = 0;
+  this._simCycle = 0;
+  this._cityTime = 0;
+  this._cityPopLast = 0;
+  this._messageLast = Messages.VILLAGE_REACHED;
+  this._startingYear = 1900;
+
+  // Last date sent to front end
+  this._cityYearLast = -1;
+  this._cityMonthLast = -1;
+
+  // Last time we relayed a message from PowerManager to the front-end
+  this._lastPowerMessage = null;
+
+  // And now, the main cast of characters
+  this.evaluation = new Evaluation(this._gameLevel);
+  this._valves = new Valves();
+  this.budget = new Budget();
+  this._census = new Census();
+  this._powerManager = new PowerManager(this._map);
+  this.spriteManager = new SpriteManager(this._map);
+  this._mapScanner = new MapScanner(this._map);
+  this._repairManager = new RepairManager(this._map);
+  this._traffic = new Traffic(this._map, this.spriteManager);
+  this.disasterManager = new DisasterManager(this._map, this.spriteManager, this._gameLevel);
+
+  this.blockMaps = {
+    // Holds a &quot;distance score&quot; for the block from the city centre, range  -64 to 64
+    cityCentreDistScoreMap: new BlockMap(this._map.width, this._map.height, 8),
+
+    // Holds a score representing how dangerous an area is, in range 0-250 (larger is worse)
+    crimeRateMap: new BlockMap(this._map.width, this._map.height, 2),
+
+    // A map used to note positions of fire stations during the map scan, range 0-1000
+    fireStationMap: new BlockMap(this._map.width, this._map.height, 8),
+
+    // Holds a value containing a score representing the effect of fire cover in this neighborhood, range 0-1000
+    fireStationEffectMap: new BlockMap(this._map.width, this._map.height, 8),
+
+    // Holds scores representing the land value in the range 0-250
+    landValueMap: new BlockMap(this._map.width, this._map.height, 2),
+
+    // A map used to note positions of police stations during the map scan, range 0-1000
+    policeStationMap: new BlockMap(this._map.width, this._map.height, 8),
+
+    // Holds a value containing a score representing how much crime is dampened in this block, range 0-1000
+    policeStationEffectMap: new BlockMap(this._map.width, this._map.height, 8),
+
+    // Holds a value representing the amount of pollution in a neighbourhood, in the range 0-255
+    pollutionDensityMap: new BlockMap(this._map.width, this._map.height, 2),
+
+    // Holds a value representing population density of a block, in the range 0-510
+    populationDensityMap: new BlockMap(this._map.width, this._map.height, 2),
+
+    // Holds a value representing the rate of growth of a neighbourhood in the range -200 to +200
+    rateOfGrowthMap: new BlockMap(this._map.width, this._map.height, 8),
+
+    // Scores a block on how undeveloped/unspoilt it is, range 0-240
+    terrainDensityMap: new BlockMap(this._map.width, this._map.height, 4),
+
+    // Scores the volume of traffic in this cluster, range 0-240
+    trafficDensityMap: new BlockMap(this._map.width, this._map.height, 2),
+
+    // Temporary maps
+    tempMap1: new BlockMap(this._map.width, this._map.height, 2),
+    tempMap2: new BlockMap(this._map.width, this._map.height, 2),
+    tempMap3: new BlockMap(this._map.width, this._map.height, 4)
+  };
+
+  this._clearCensus();
+
+  if (savedGame) {
+    this.load(savedGame);
+  } else {
+    this.budget.setFunds(20000);
+    this._census.totalPop = 1;
+  }
+
+  this.init();
+});
+
+
+Simulation.prototype.setLevel = function(l) {
+  if (l !== Simulation.LEVEL_EASY &amp;&amp;
+      l !== Simulation.LEVEL_MED &amp;&amp;
+      l !== Simulation.LEVEL_HARD)
+    throw new Error(&#039;Invalid level!&#039;);
+
+  this._gameLevel = l;
+};
+
+
+Simulation.prototype.setSpeed = function(s) {
+  if (s !== Simulation.SPEED_PAUSED &amp;&amp;
+      s !== Simulation.SPEED_SLOW &amp;&amp;
+      s !== Simulation.SPEED_MED &amp;&amp;
+      s !== Simulation.SPEED_FAST)
+    throw new Error(&#039;Invalid speed!&#039;);
+
+  this._speed = s;
+};
+
+
+Simulation.prototype.isPaused = function() {
+  return this._speed === Simulation.SPEED_PAUSED;
+};
+
+
+var saveProps = [&#039;_cityTime&#039;, &#039;_speed&#039;, &#039;_gameLevel&#039;];
+
+Simulation.prototype.save = function(saveData) {
+  for (var i = 0, l = saveProps.length; i &lt; l; i++)
+    saveData[saveProps[i]] = this[saveProps[i]];
+
+  this._map.save(saveData);
+  this.evaluation.save(saveData);
+  this._valves.save(saveData);
+  this.budget.save(saveData);
+  this._census.save(saveData);
+};
+
+
+Simulation.prototype.load = function(saveData) {
+  for (var i = 0, l = saveProps.length; i &lt; l; i++)
+    this[saveProps[i]] = saveData[saveProps[i]];
+
+  this._map.load(saveData);
+  this.evaluation.load(saveData);
+  this._valves.load(saveData);
+  this.budget.load(saveData);
+  this._census.load(saveData);
+};
+
+
+Simulation.prototype.simTick = function() {
+  this._simFrame();
+  this._updateTime();
+  // TODO Graphs
+};
+
+
+Simulation.prototype._simFrame = function() {
+  if (this.budget.awaitingValues)
+    return;
+
+  // Default to slow speed
+  var threshold = 100;
+
+  switch (this._speed) {
+    case Simulation.SPEED_PAUSED:
+      return;
+
+    case Simulation.SPEED_SLOW:
+      // We&#039;ve already set the threshold correctly
+      break;
+
+    case Simulation.SPEED_MED:
+      threshold = 50;
+      break;
+
+    case Simulation.SPEED_FAST:
+      threshold = 10;
+      break;
+
+    default:
+      console.warn(&#039;Unexpected speed (&#039;  + this._speed + &#039;): defaulting to slow&#039;);
+  }
+
+  var d = new Date();
+  if (d - this._lastTickTime &lt; threshold)
+    return;
+
+  var simData = this._constructSimData();
+  this._simulate(simData);
+  this._lastTickTime = new Date();
+};
+
+
+Simulation.prototype._clearCensus = function() {
+  this._census.clearCensus();
+  this._powerManager.clearPowerStack();
+  this.blockMaps.fireStationMap.clear();
+  this.blockMaps.policeStationMap.clear();
+};
+
+
+Simulation.prototype._constructSimData = function() {
+  return {
+    blockMaps: this.blockMaps,
+    budget: this.budget,
+    census: this._census,
+    cityTime: this._cityTime,
+    disasterManager: this.disasterManager,
+    gameLevel: this._gameLevel,
+    repairManager: this._repairManager,
+    powerManager: this._powerManager,
+    simulator: this,
+    spriteManager: this.spriteManager,
+    trafficManager: this._traffic,
+    valves: this._valves
+  };
+};
+
+
+Simulation.prototype.init = function() {
+  this._lastTickTime = -1;
+
+  // Add various listeners that we will in turn transmit upwards
+  var evaluationEvents = [&#039;CLASSIFICATION_UPDATED&#039;, &#039;POPULATION_UPDATED&#039;, &#039;SCORE_UPDATED&#039;].map(function(m) {
+    return Messages[m];
+  });
+  for (var i = 0, l = evaluationEvents.length; i &lt; l; i++)
+    this.evaluation.addEventListener(evaluationEvents[i], MiscUtils.reflectEvent.bind(this, evaluationEvents[i]));
+
+  this._powerManager.addEventListener(Messages.NOT_ENOUGH_POWER, function(e) {
+    var d = new Date();
+
+    if (this._lastPowerMessage === null || d - this._lastPowerMessage &gt; 1000 * 60 * 2) {
+      this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NOT_ENOUGH_POWER});
+      this._lastPowerMessage = d;
+    }
+  }.bind(this));
+
+  this.budget.addEventListener(Messages.FUNDS_CHANGED, MiscUtils.reflectEvent.bind(this, Messages.FUNDS_CHANGED));
+  this.budget.addEventListener(Messages.BUDGET_NEEDED, MiscUtils.reflectEvent.bind(this, Messages.BUDGET_NEEDED));
+  this.budget.addEventListener(Messages.NO_MONEY, this._wrapMessage.bind(this, Messages.NO_MONEY));
+
+  this._valves.addEventListener(Messages.VALVES_UPDATED, this._onValveChange.bind(this));
+
+  for (i = 0, l = Messages.DISASTER_MESSAGES.length; i &lt; l; i++) {
+    this.spriteManager.addEventListener(Messages.DISASTER_MESSAGES[i], this._wrapMessage.bind(this, Messages.DISASTER_MESSAGES[i]));
+    this.disasterManager.addEventListener(Messages.DISASTER_MESSAGES[i], this._wrapMessage.bind(this, Messages.DISASTER_MESSAGES[i]));
+  }
+  for (i = 0, l = Messages.CRASHES.length; i &lt; l; i++)
+    this.spriteManager.addEventListener(Messages.CRASHES[i], this._wrapMessage.bind(this, Messages.CRASHES[i]));
+
+  this.spriteManager.addEventListener(Messages.HEAVY_TRAFFIC, this._wrapMessage.bind(this, Messages.HEAVY_TRAFFIC));
+
+  // Register actions
+  Commercial.registerHandlers(this._mapScanner, this._repairManager);
+  EmergencyServices.registerHandlers(this._mapScanner, this._repairManager);
+  Industrial.registerHandlers(this._mapScanner, this._repairManager);
+  MiscTiles.registerHandlers(this._mapScanner, this._repairManager);
+  this._powerManager.registerHandlers(this._mapScanner, this._repairManager);
+  Road.registerHandlers(this._mapScanner, this._repairManager);
+  Residential.registerHandlers(this._mapScanner, this._repairManager);
+  Stadia.registerHandlers(this._mapScanner, this._repairManager);
+  Transport.registerHandlers(this._mapScanner, this._repairManager);
+
+  var simData = this._constructSimData();
+  this._mapScanner.mapScan(0, this._map.width, simData);
+  this._powerManager.doPowerScan(this._census);
+  BlockMapUtils.pollutionTerrainLandValueScan(this._map, this._census, this.blockMaps);
+  BlockMapUtils.crimeScan(this._census, this.blockMaps);
+  BlockMapUtils.populationDensityScan(this._map, this.blockMaps);
+  BlockMapUtils.fireAnalysis(this.blockMaps);
+};
+
+
+var speedPowerScan = [2, 4, 5];
+var speedPollutionTerrainLandValueScan = [2, 7, 17];
+var speedCrimeScan = [1, 8, 18];
+var speedPopulationDensityScan = [1, 9,19];
+var speedFireAnalysis = [1, 10, 20];
+var CENSUS_FREQUENCY_10 = 4;
+var CENSUS_FREQUENCY_120 = CENSUS_FREQUENCY_10 * 10;
+var TAX_FREQUENCY = 48;
+
+
+var simulate = function(simData) {
+  this._phaseCycle &amp;= 15;
+  var speedIndex = this._speed - 1;
+
+  switch (this._phaseCycle)  {
+    case 0:
+      if (++this._simCycle &gt; 1023)
+          this._simCycle = 0;
+
+      this._cityTime++;
+
+      if ((this._simCycle &amp; 1) === 0)
+        this._valves.setValves(this._gameLevel, this._census, this.budget);
+
+      this._clearCensus();
+      break;
+
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+      this._mapScanner.mapScan((this._phaseCycle - 1) * this._map.width / 8,
+                                this._phaseCycle * this._map.width / 8, simData);
+      break;
+
+    case 9:
+      if (this._cityTime % CENSUS_FREQUENCY_10 === 0)
+        this._census.take10Census(budget);
+
+      if (this._cityTime % CENSUS_FREQUENCY_120 === 0)
+        this._census.take120Census(budget);
+
+      if (this._cityTime % TAX_FREQUENCY === 0)  {
+        this.budget.collectTax(this._gameLevel, this._census);
+        this.evaluation.cityEvaluation(simData);
+      }
+
+      break;
+
+    case 10:
+      if ((this._simCycle % 5) === 0)
+        BlockMapUtils.neutraliseRateOfGrowthMap(simData.blockMaps);
+
+      BlockMapUtils.neutraliseTrafficMap(this.blockMaps);
+      this._sendMessages();
+      break;
+
+    case 11:
+      if ((this._simCycle % speedPowerScan[speedIndex]) === 0)
+        this._powerManager.doPowerScan(this._census);
+      break;
+
+    case 12:
+      if ((this._simCycle % speedPollutionTerrainLandValueScan[speedIndex]) === 0)
+        BlockMapUtils.pollutionTerrainLandValueScan(this._map, this._census, this.blockMaps);
+      break;
+
+    case 13:
+      if ((this._simCycle % speedCrimeScan[speedIndex]) === 0)
+        BlockMapUtils.crimeScan(this._census, this.blockMaps);
+      break;
+
+    case 14:
+      if ((this._simCycle % speedPopulationDensityScan[speedIndex]) === 0)
+        BlockMapUtils.populationDensityScan(this._map, this.blockMaps);
+      break;
+
+    case 15:
+      if ((this._simCycle % speedFireAnalysis[speedIndex]) === 0)
+        BlockMapUtils.fireAnalysis(this.blockMaps);
+
+      this.disasterManager.doDisasters(this._census);
+      break;
+  }
+
+  // Go on the the next phase.
+  this._phaseCycle = (this._phaseCycle + 1) &amp; 15;
+};
+
+
+Simulation.prototype._simulate = function(simData) {
+  // This is actually a wrapper function that will only be called once, to perform the initial
+  // evaluation. Once that has completed, it will supplant itself with the standard &quot;simulate&quot;
+  // procedure defined above
+  this.evaluation.cityEvaluation(simData);
+  this._simulate = simulate;
+  this._simulate(simData);
+};
+
+
+Simulation.prototype._wrapMessage = function(message, data) {
+  this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: message, data: data});
+};
+
+
+Simulation.prototype._sendMessages = function() {
+  this._checkGrowth();
+
+  var totalZonePop = this._census.resZonePop + this._census.comZonePop +
+                     this._census.indZonePop;
+  var powerPop = this._census.nuclearPowerPop + this._census.coalPowerPop;
+
+  switch (this._cityTime &amp; 63) {
+    case 1:
+      if (Math.floor(totalZonePop / 4) &gt;= this._census.resZonePop)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_MORE_RESIDENTIAL});
+      break;
+
+    case 5:
+      if (Math.floor(totalZonePop / 8) &gt;= this._census.comZonePop)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_MORE_COMMERCIAL});
+      break;
+
+    case 10:
+      if (Math.floor(totalZonePop / 8) &gt;= this._census.indZonePop)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_MORE_INDUSTRIAL});
+      break;
+
+    case 14:
+      if (totalZonePop &gt; 10 &amp;&amp; totalZonePop * 2 &gt; this._census.roadTotal)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_MORE_ROADS});
+      break;
+
+    case 18:
+      if (totalZonePop &gt; 50 &amp;&amp; totalZonePop &gt; this._census.railTotal)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_MORE_RAILS});
+      break;
+
+    case 22:
+      if (totalZonePop &gt; 10 &amp;&amp; powerPop === 0)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_ELECTRICITY});
+      break;
+
+    case 26:
+      if (this._census.resPop &gt; 500 &amp;&amp; this._census.stadiumPop === 0) {
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_STADIUM});
+        this._valves.resCap = true;
+      } else {
+        this._valves.resCap = false;
+      }
+      break;
+
+    case 28:
+      if (this._census.indPop &gt; 70 &amp;&amp; this._census.seaportPop === 0) {
+          this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_SEAPORT});
+        this._valves.indCap = true;
+      } else {
+        this._valves.indCap = false;
+      }
+      break;
+
+    case 30:
+      if (this._census.comPop &gt; 100 &amp;&amp; this._census.airportPop === 0) {
+          this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages._NEED_AIRPORT});
+        this._valves.comCap = true;
+      } else {
+        this._valves.comCap = false;
+      }
+      break;
+
+    case 32:
+      var zoneCount = this._census.unpoweredZoneCount + this._census.poweredZoneCount;
+      if (zoneCount &gt; 0) {
+        if (this._census.poweredZoneCount / zoneCount &lt; 0.7 &amp;&amp; powerPop &gt; 0) {
+          var d = new Date();
+          if (this._lastPowerMessage === null || d - this._lastPowerMessage &gt; 1000 * 60 * 2) {
+            this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.BLACKOUTS_REPORTED});
+            this._lastPowerMessage = d;
+          }
+        }
+      }
+      break;
+
+    case 35:
+      if (this._census.pollutionAverage &gt; 60)
+        this._emitEvent(Messages.FRONT_END_MESSAGE,
+                       {subject: Messages.HIGH_POLLUTION, data: {x: this._map.pollutionMaxX, y: this._map.pollutionMaxY}});
+      break;
+
+    case 42:
+      if (this._census.crimeAverage &gt; 100)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.HIGH_CRIME});
+      break;
+
+    case 45:
+      if (this._census.totalPop &gt; 60 &amp;&amp; this._census.fireStationPop === 0)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_FIRE_STATION});
+      break;
+
+    case 48:
+      if (this._census.totalPop &gt; 60 &amp;&amp; this._census.policeStationPop === 0)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.NEED_POLICE_STATION});
+      break;
+
+    case 51:
+      if (this.budget.cityTax &gt; 12)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.TAX_TOO_HIGH});
+      break;
+
+    case 54:
+      if (this.budget.roadEffect &lt; Math.floor(5 * this.budget.MAX_ROAD_EFFECT / 8) &amp;&amp; this._census.roadTotal &gt; 30)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.ROAD_NEEDS_FUNDING});
+      break;
+
+    case 57:
+      if (this.budget.fireEffect &lt; Math.floor(7 * this.budget.MAX_FIRE_STATION_EFFECT / 10) &amp;&amp; this._census.totalPop &gt; 20)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.FIRE_STATION_NEEDS_FUNDING});
+      break;
+
+    case 60:
+      if (this.budget.policeEffect &lt; Math.floor(7 * this.budget.MAX_POLICE_STATION_EFFECT / 10) &amp;&amp; this._census.totalPop &gt; 20)
+        this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.POLICE_NEEDS_FUNDING});
+      break;
+
+  case 63:
+    if (this._census.trafficAverage &gt; 60)
+      this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: Messages.TRAFFIC_JAMS});
+    break;
+  }
+};
+
+
+Simulation.prototype._checkGrowth = function() {
+  if ((this._cityTime &amp; 3) !== 0)
+    return;
+
+  var message = &#039;&#039;;
+  var cityPop = this.evaluation.getPopulation(this._census);
+
+  if (cityPop !== this._cityPopLast) {
+    var lastClass = this.evaluation.getCityClass(this._cityPopLast);
+    var newClass = this.evaluation.getCityClass(cityPop);
+
+    if (lastClass !== newClass) {
+      switch (newClass) {
+        case Evaluation.CC_VILLAGE:
+          // Don&#039;t mention it.
+          break;
+
+        case Evaluation.CC_TOWN:
+          message = Messages.REACHED_TOWN;
+          break;
+
+        case Evaluation.CC_CITY:
+          message = Messages.REACHED_CITY;
+          break;
+
+        case Evaluation.CC_CAPITAL:
+          message = Messages.REACHED_CAPITAL;
+            break;
+
+        case Evaluation.CC_METROPOLIS:
+          message = Messages.REACHED_METROPOLIS;
+          break;
+
+        case Evaluation.CC_MEGALOPOLIS:
+          message = Messages.REACHED_MEGALOPOLIS;
+          break;
+
+        default:
+          break;
+      }
+    }
+  }
+
+  if (message !== &#039;&#039; &amp;&amp; message !== this._messageLast) {
+    this._emitEvent(Messages.FRONT_END_MESSAGE, {subject: message});
+    this._messageLast = message;
+  }
+
+  this._cityPopLast = cityPop;
+};
+
+
+Simulation.prototype._onValveChange  = function() {
+  this._resLast = this._valves.resValve;
+  this._comLast = this._valves.comValve;
+  this._indLast = this._valves.indValve;
+
+  this._emitEvent(Messages.VALVES_UPDATED, {residential: this._valves.resValve,
+                                            commercial: this._valves.comValve,
+                                            industrial: this._valves.indValve});
+};
+
+
+Simulation.prototype.getDate = function() {
+  var year = Math.floor(this._cityTime / 48) + this._startingYear;
+  var month = Math.floor(this._cityTime % 48) &gt;&gt; 2;
+  return {month: month, year: year};
+};
+
+
+Simulation.prototype._setYear = function(year) {
+  if (year &lt; this._startingYear)
+    year = this._startingYear;
+
+  year = (year - this._startingYear) - (this._cityTime / 48);
+  this._cityTime += year * 48;
+  this._updateTime();
+};
+
+
+Simulation.prototype._updateTime = function() {
+  var megalinium = 1000000;
+  var cityYear = Math.floor(this._cityTime / 48) + this._startingYear;
+  var cityMonth = Math.floor(this._cityTime % 48) &gt;&gt; 2;
+
+  if (cityYear &gt;= megalinium) {
+    this.setYear(startingYear);
+    return;
+  }
+
+  if (this._cityYearLast !== cityYear || this._cityMonthLast !== cityMonth) {
+    this._cityYearLast = cityYear;
+    this._cityMonthLast = cityMonth;
+    this._emitEvent(Messages.DATE_UPDATED, {month: cityMonth, year: cityYear});
+  }
+};
+
+
+Object.defineProperties(Simulation,
+  {LEVEL_EASY: MiscUtils.makeConstantDescriptor(0),
+  LEVEL_MED:  MiscUtils.makeConstantDescriptor(1),
+  LEVEL_HARD: MiscUtils.makeConstantDescriptor(2),
+  SPEED_PAUSED: MiscUtils.makeConstantDescriptor(0),
+  SPEED_SLOW:  MiscUtils.makeConstantDescriptor(1),
+  SPEED_MED: MiscUtils.makeConstantDescriptor(2),
+  SPEED_FAST: MiscUtils.makeConstantDescriptor(3),
+});
+
+
+export { Simulation };</textarea
+        >
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>.</p>
+      </div>
+    </footer>
+
+    <script type="text/html" id="complexity-popover-template">
+      <div class="complexity-notice">
+        Complexity : {{ cyclomatic }} <br />
+        Length : {{ halstead.length }} <br />
+        Difficulty : {{ halstead.difficulty.toFixed(2) }} <br />
+        Est # bugs : {{ halstead.bugs.toFixed(2) }}<br />
+      </div>
+    </script>
+
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/core-bundle.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/codemirror.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/codemirror.markpopovertext.js"
+    ></script>
+    <script type="text/javascript" src="report.js"></script>
+    <script type="text/javascript" src="report.history.js"></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/plato-file.js"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+{
+  "info": {
+    "file": "src\\queryWindow.js",
+    "fileShort": "src\\queryWindow.js",
+    "fileSafe": "src_queryWindow_js",
+    "link": "files/src_queryWindow_js/index.html"
+  },
+  "complexity": {
+    "methodAggregate": {
+      "cyclomatic": 4,
+      "cyclomaticDensity": 23.529,
+      "halstead": {
+        "bugs": 0.251,
+        "difficulty": 12.458,
+        "effort": 9373.29,
+        "length": 134,
+        "time": 520.738,
+        "vocabulary": 49,
+        "volume": 752.371,
+        "operands": {
+          "distinct": 36,
+          "total": 69,
+          "identifiers": ["__stripped__"]
+        },
+        "operators": {
+          "distinct": 13,
+          "total": 65,
+          "identifiers": ["__stripped__"]
+        }
+      },
+      "params": 1,
+      "sloc": { "logical": 17, "physical": 48 }
+    },
+    "settings": {
+      "commonjs": true,
+      "forin": false,
+      "logicalor": true,
+      "switchcase": true,
+      "trycatch": false,
+      "newmi": true
+    },
+    "classes": [],
+    "dependencies": [
+      { "line": 10, "path": "./config", "type": "esm" },
+      { "line": 11, "path": "./messages", "type": "esm" },
+      { "line": 12, "path": "./modalWindow", "type": "esm" },
+      { "line": 13, "path": "./miscUtils", "type": "esm" }
+    ],
+    "errors": [],
+    "lineEnd": 48,
+    "lineStart": 1,
+    "maintainability": 79.525,
+    "methods": [
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 50,
+        "halstead": {
+          "bugs": 0.02,
+          "difficulty": 1.667,
+          "effort": 101.574,
+          "length": 17,
+          "time": 5.643,
+          "vocabulary": 12,
+          "volume": 60.944,
+          "operands": {
+            "distinct": 9,
+            "total": 10,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 3,
+            "total": 7,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 0,
+        "sloc": { "logical": 2, "physical": 4 },
+        "errors": [],
+        "lineEnd": 18,
+        "lineStart": 15,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 50,
+        "halstead": {
+          "bugs": 0.008,
+          "difficulty": 1.25,
+          "effort": 29.081,
+          "length": 9,
+          "time": 1.616,
+          "vocabulary": 6,
+          "volume": 23.265,
+          "operands": {
+            "distinct": 4,
+            "total": 5,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 2,
+            "total": 4,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 1,
+        "sloc": { "logical": 2, "physical": 4 },
+        "errors": [],
+        "lineEnd": 28,
+        "lineStart": 25,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 1,
+        "cyclomaticDensity": 50,
+        "halstead": {
+          "bugs": 0.008,
+          "difficulty": 1.25,
+          "effort": 29.081,
+          "length": 9,
+          "time": 1.616,
+          "vocabulary": 6,
+          "volume": 23.265,
+          "operands": {
+            "distinct": 4,
+            "total": 5,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 2,
+            "total": 4,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 0,
+        "sloc": { "logical": 2, "physical": 4 },
+        "errors": [],
+        "lineEnd": 34,
+        "lineStart": 31,
+        "name": "<anonymous>"
+      },
+      {
+        "cyclomatic": 4,
+        "cyclomaticDensity": 80,
+        "halstead": {
+          "bugs": 0.05,
+          "difficulty": 4.846,
+          "effort": 733.065,
+          "length": 35,
+          "time": 40.726,
+          "vocabulary": 20,
+          "volume": 151.267,
+          "operands": {
+            "distinct": 13,
+            "total": 18,
+            "identifiers": ["__stripped__"]
+          },
+          "operators": {
+            "distinct": 7,
+            "total": 17,
+            "identifiers": ["__stripped__"]
+          }
+        },
+        "params": 0,
+        "sloc": { "logical": 5, "physical": 9 },
+        "errors": [],
+        "lineEnd": 45,
+        "lineStart": 37,
+        "name": "<anonymous>"
+      }
+    ],
+    "methodAverage": {
+      "cyclomatic": 1.75,
+      "cyclomaticDensity": 57.5,
+      "halstead": {
+        "bugs": 0.022,
+        "difficulty": 2.253,
+        "effort": 223.2,
+        "length": 17.5,
+        "time": 12.4,
+        "vocabulary": 11,
+        "volume": 64.685,
+        "operands": { "distinct": 7.5, "total": 9.5 },
+        "operators": { "distinct": 3.5, "total": 8 }
+      },
+      "params": 0.25,
+      "sloc": { "logical": 2.75, "physical": 5.25 }
+    },
+    "module": "src\\queryWindow.js"
+  },
+  "jshint": { "messages": [] }
+}

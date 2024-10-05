@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plato - src\inputStatus.js</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="../../assets/css/vendor/morris.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet" />
+    <link href="../../assets/css/plato.css" rel="stylesheet" />
+    <link href="../../assets/css/plato-file.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="http://github.com/es-analysis/plato"
+          >Plato on Github</a
+        >
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="../../index.html">Report Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>src\inputStatus.js</h1>
+      </div>
+    </div>
+
+    <div class="container aggregate-stats">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Maintainability
+            <a
+              href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability."
+                data-original-title="Maintainability Index"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">61.44</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Lines of code
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h2>
+          <p class="stat">308</p>
+        </div>
+      </div>
+      <div class="row historical">
+        <div class="col-md-6">
+          <p id="chart_historical_maint" class="chart"></p>
+        </div>
+        <div class="col-md-6">
+          <p id="chart_historical_sloc" class="chart"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="header">
+            Difficulty
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="The difficulty measure is related to the difficulty of the program to write or understand."
+                data-original-title="Difficulty"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">59.98</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="header">
+            Estimated Errors
+            <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation."
+                data-original-title="Delivered Bugs"
+                data-container="body"
+              ></i
+            ></a>
+          </h2>
+          <p class="stat">3.31</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container charts">
+      <div class="row">
+        <h2 class="header">Function weight</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By Complexity
+            <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"
+              ><i
+                class="icon icon-info-sign"
+                rel="popover"
+                data-placement="top"
+                data-trigger="hover"
+                data-content="This metric counts the number of distinct paths through a block of code. Lower values are better."
+                data-original-title="Cyclomatic Complexity"
+                data-container="body"
+              ></i
+            ></a>
+          </h3>
+          <div id="fn-by-complexity" class="stat"></div>
+        </div>
+        <div class="col-md-6">
+          <h3 class="chart-header">
+            By SLOC
+            <i
+              class="icon icon-info-sign"
+              rel="popover"
+              data-placement="top"
+              data-trigger="hover"
+              data-content="Source Lines of Code / Logical Lines of Code"
+              data-original-title="SLOC/LSLOC"
+              data-container="body"
+            ></i>
+          </h3>
+          <div id="fn-by-sloc" class="stat"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <textarea id="file-source" class="col-md-12">
+/* micropolisJS. Adapted by Graeme McCutcheon from Micropolis.
+ *
+ * This code is released under the GNU GPL v3, with some additional terms.
+ * Please see the files LICENSE and COPYING for details. Alternatively,
+ * consult http://micropolisjs.graememcc.co.uk/LICENSE and
+ * http://micropolisjs.graememcc.co.uk/COPYING
+ *
+ */
+
+import { EventEmitter } from &#039;./eventEmitter&#039;;
+import { GameCanvas } from &#039;./gameCanvas&#039;;
+import { GameTools } from &#039;./gameTools&#039;;
+import * as Messages from &#039;./messages&#039;;
+import { MiscUtils } from &#039;./miscUtils&#039;;
+
+var InputStatus = EventEmitter(function(map, tileWidth) {
+  this.gameTools = new GameTools(map);
+
+  this.gameTools.addEventListener(Messages.QUERY_WINDOW_NEEDED, MiscUtils.reflectEvent.bind(this, Messages.QUERY_WINDOW_NEEDED));
+
+  this.canvasID = MiscUtils.normaliseDOMid(canvasID);
+
+  this._tileWidth = tileWidth;
+
+  // Keyboard Movement
+  this.up = false;
+  this.down = false;
+  this.left = false;
+  this.right = false;
+  this.escape = false;
+
+  // Mouse movement
+  this.mouseX = -1;
+  this.mouseY = -1;
+
+  // Mouse drags
+  this._dragging = false;
+  this._lastdragX = -1;
+  this._lastdragY = -1;
+
+  // Tool buttons
+  this.toolName = null;
+  this.currentTool = null;
+  this.toolWidth = 0;
+  this.toolColour = &#039;&#039;;
+
+  // Add the listeners
+  $(document).keydown(keyDownHandler.bind(this));
+  $(document).keyup(keyUpHandler.bind(this));
+
+  this.getRelativeCoordinates = getRelativeCoordinates.bind(this);
+  $(this.canvasID).on(&#039;mouseenter&#039;, mouseEnterHandler.bind(this));
+  $(this.canvasID).on(&#039;mouseleave&#039;, mouseLeaveHandler.bind(this));
+
+  this.mouseDownHandler = mouseDownHandler.bind(this);
+  this.mouseMoveHandler = mouseMoveHandler.bind(this);
+  this.mouseUpHandler = mouseUpHandler.bind(this);
+  this.canvasClickHandler = canvasClickHandler.bind(this);
+
+  $(&#039;.toolButton&#039;).click(toolButtonHandler.bind(this));
+  $(&#039;#budgetRequest&#039;).click(budgetHandler.bind(this));
+  $(&#039;#evalRequest&#039;).click(evalHandler.bind(this));
+  $(&#039;#disasterRequest&#039;).click(disasterHandler.bind(this));
+  $(&#039;#pauseRequest&#039;).click(this.speedChangeHandler.bind(this));
+  $(&#039;#screenshotRequest&#039;).click(screenshotHandler.bind(this));
+  $(&#039;#settingsRequest&#039;).click(settingsHandler.bind(this));
+  $(&#039;#saveRequest&#039;).click(saveHandler.bind(this));
+  $(&#039;#debugRequest&#039;).click(debugHandler.bind(this));
+});
+
+
+var canvasID = &#039;#&#039; + GameCanvas.DEFAULT_ID;
+var toolOutputID = &#039;#toolOutput&#039;;
+
+
+var keyDownHandler = function(e) {
+  var handled = false;
+
+  switch (e.keyCode) {
+    case 38:
+    case 87:
+      this.up = true;
+      handled = true;
+      break;
+
+    case 40:
+    case 83:
+      this.down = true;
+      handled = true;
+      break;
+
+    case 39:
+    case 68:
+      this.right = true;
+      handled = true;
+      break;
+
+    case 37:
+    case 65:
+      this.left = true;
+      handled = true;
+      break;
+
+    case 27:
+      this.escape = true;
+      handled = true;
+  }
+
+  if (handled)
+    e.preventDefault();
+};
+
+
+var keyUpHandler = function(e) {
+  switch (e.keyCode) {
+    case 38:
+    case 87:
+      this.up = false;
+      break;
+
+    case 40:
+    case 83:
+      this.down = false;
+      break;
+
+    case 39:
+    case 68:
+      this.right = false;
+      break;
+
+    case 37:
+    case 65:
+      this.left = false;
+      break;
+
+    case 27:
+      this.escape = false;
+  }
+};
+
+
+var getRelativeCoordinates = function(e) {
+  var cRect = document.querySelector(this.canvasID).getBoundingClientRect();
+  return {x: e.clientX - cRect.left, y: e.clientY - cRect.top};
+};
+
+
+var mouseEnterHandler = function(e) {
+  if (this.currentTool === null)
+    return;
+
+  $(this.canvasID).on(&#039;mousemove&#039;, this.mouseMoveHandler);
+
+  if (this.currentTool.isDraggable)
+    $(this.canvasID).on(&#039;mousedown&#039;, this.mouseDownHandler);
+  else
+    $(this.canvasID).on(&#039;click&#039;, this.canvasClickHandler);
+};
+
+
+var mouseDownHandler = function(e) {
+  if (e.which !== 1 || e.shiftKey || e.altKey || e.ctrlKey || e.metaKey)
+    return;
+
+  var coords = this.getRelativeCoordinates(e);
+  this.mouseX = coords.x;
+  this.mouseY = coords.y;
+
+  this._dragging = true;
+  this._emitEvent(Messages.TOOL_CLICKED, {x: this.mouseX, y: this.mouseY});
+
+  this._lastDragX = Math.floor(this.mouseX / this._tileWidth);
+  this._lastDragY = Math.floor(this.mouseY / this._tileWidth);
+
+  $(this.canvasID).on(&#039;mouseup&#039;, this.mouseUpHandler);
+  e.preventDefault();
+};
+
+
+var mouseUpHandler = function(e) {
+  this._dragging = false;
+  this._lastDragX = -1;
+  this._lastDragY = -1;
+  $(this.canvasID).off(&#039;mouseup&#039;);
+  e.preventDefault();
+};
+
+
+var mouseLeaveHandler = function(e) {
+  $(this.canvasID).off(&#039;mousedown&#039;);
+  $(this.canvasID).off(&#039;mousemove&#039;);
+  $(this.canvasID).off(&#039;mouseup&#039;);
+
+  // Watch out: we might have been mid-drag
+  if (this._dragging) {
+    this._dragging = false;
+    this._lastDragX = -1;
+    this._lastDragY = -1;
+  }
+
+  $(this.canvasID).off(&#039;click&#039;);
+
+  this.mouseX = -1;
+  this.mouseY = -1;
+};
+
+
+var mouseMoveHandler = function(e) {
+  var coords = this.getRelativeCoordinates(e);
+  this.mouseX = coords.x;
+  this.mouseY = coords.y;
+
+  if (this._dragging) {
+    // XXX Work up how to patch up the path for fast mouse moves. My first attempt was too slow, and ended up missing
+    // mouseUp events
+    var x = Math.floor(this.mouseX / this._tileWidth);
+    var y = Math.floor(this.mouseY / this._tileWidth);
+
+    var lastX = this._lastDragX;
+    var lastY = this._lastDragY;
+    if (x !== lastX || y !== lastY) {
+      this._emitEvent(Messages.TOOL_CLICKED, {x: this.mouseX, y: this.mouseY});
+      this._lastDragX = x;
+      this._lastDragY = y;
+    }
+  }
+};
+
+
+var canvasClickHandler = function(e) {
+  if (e.which !== 1 || e.shiftKey || e.altKey || e.ctrlKey || e.metaKey || this.mouseX === -1 ||
+     this._mouseY === -1 || this._dragging)
+    return;
+
+  this._emitEvent(Messages.TOOL_CLICKED, {x: this.mouseX, y: this.mouseY});
+  e.preventDefault();
+};
+
+
+var toolButtonHandler = function(e) {
+  // Remove highlight from last tool button
+  $(&#039;.selected&#039;).each(function() {
+    $(this).removeClass(&#039;selected&#039;);
+    $(this).addClass(&#039;unselected&#039;);
+  });
+
+  // Add highlight
+  $(e.target).removeClass(&#039;unselected&#039;);
+  $(e.target).addClass(&#039;selected&#039;);
+
+  this.toolName = $(e.target).attr(&#039;data-tool&#039;);
+  this.toolWidth = $(e.target).attr(&#039;data-size&#039;);
+  this.currentTool = this.gameTools[this.toolName];
+  this.toolColour = $(e.target).attr(&#039;data-colour&#039;);
+  $(toolOutputID).html(&#039;Tools&#039;);
+
+  if (this.toolName !== &#039;query&#039;) {
+    $(this.canvasID).removeClass(&#039;helpPointer&#039;);
+    $(this.canvasID).addClass(&#039;pointer&#039;);
+  } else {
+    $(this.canvasID).removeClass(&#039;pointer&#039;);
+    $(this.canvasID).addClass(&#039;helpPointer&#039;);
+  }
+
+  e.preventDefault();
+};
+
+
+InputStatus.prototype.speedChangeHandler = function(e) {
+  var requestedSpeed = $(&#039;#pauseRequest&#039;).text();
+  var newRequest = requestedSpeed === &#039;Pause&#039; ? &#039;Play&#039; : &#039;Pause&#039;;
+  $(&#039;#pauseRequest&#039;).text(newRequest);
+  this._emitEvent(Messages.SPEED_CHANGE, requestedSpeed);
+};
+
+
+InputStatus.prototype.clearTool = function() {
+  if (this.toolName === &#039;query&#039;) {
+    $(this.canvasID).removeClass(&#039;helpPointer&#039;);
+    $(this.canvasID).addClass(&#039;pointer&#039;);
+  }
+
+  this.currentTool = null;
+  this.toolWidth = 0;
+  this.toolColour = &#039;&#039;;
+  $(&#039;.selected&#039;).removeClass(&#039;selected&#039;);
+};
+
+
+var makeHandler = function(message) {
+  var m = Messages[message];
+
+  return function(e) {
+    this._emitEvent(m);
+  };
+};
+
+
+var budgetHandler = makeHandler(&#039;BUDGET_REQUESTED&#039;);
+var debugHandler = makeHandler(&#039;DEBUG_WINDOW_REQUESTED&#039;);
+var disasterHandler = makeHandler(&#039;DISASTER_REQUESTED&#039;);
+var evalHandler = makeHandler(&#039;EVAL_REQUESTED&#039;);
+var screenshotHandler = makeHandler(&#039;SCREENSHOT_WINDOW_REQUESTED&#039;);
+var settingsHandler = makeHandler(&#039;SETTINGS_WINDOW_REQUESTED&#039;);
+var saveHandler = makeHandler(&#039;SAVE_REQUESTED&#039;);
+
+
+export { InputStatus };</textarea
+        >
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>.</p>
+      </div>
+    </footer>
+
+    <script type="text/html" id="complexity-popover-template">
+      <div class="complexity-notice">
+        Complexity : {{ cyclomatic }} <br />
+        Length : {{ halstead.length }} <br />
+        Difficulty : {{ halstead.difficulty.toFixed(2) }} <br />
+        Est # bugs : {{ halstead.bugs.toFixed(2) }}<br />
+      </div>
+    </script>
+
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/core-bundle.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/bundles/codemirror.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/codemirror.markpopovertext.js"
+    ></script>
+    <script type="text/javascript" src="report.js"></script>
+    <script type="text/javascript" src="report.history.js"></script>
+    <script
+      type="text/javascript"
+      src="../../assets/scripts/plato-file.js"
+    ></script>
+  </body>
+</html>
